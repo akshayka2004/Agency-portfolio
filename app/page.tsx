@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
 import { Waves } from "@/components/ui/wave-background";
+import { ProcessScroller } from "@/components/ProcessScroller";
 
 export default function Home() {
   const [formStatus, setFormStatus] = useState<string | null>(null);
@@ -30,8 +30,6 @@ export default function Home() {
 
   return (
     <div className="grain-overlay scanlines min-h-screen bg-background text-foreground selection:bg-neon-green selection:text-black">
-      <Navbar />
-
       <main className="pt-24">
         {/* Hero Section */}
         <section id="hero" className="min-h-[100svh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden border-b-4 border-primary-container">
@@ -158,22 +156,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Process Section */}
-        <section className="py-32 px-6 bg-black text-white border-y-8 border-primary-container">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-16 leading-tight">
-              THE ONLY THING WITH STANDARDIZATION AT NUESTRO: <br /><span className="text-primary-container">OUR WORK PROCESS</span>
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-6 border-y-2 border-white/20">
-              {["THE INTERROGATION", "THE BLUEPRINT", "THE CHAOS", "THE REFINEMENT", "THE BUILD", "THE DROP"].map((step, idx) => (
-                <div key={idx} className="p-4 md:p-8 border-r-2 border-b-2 md:border-b-0 border-white/20 hover:bg-primary-container hover:text-black transition-colors">
-                  <div className="text-[10px] md:text-xs font-bold uppercase opacity-50 mb-4 md:6">{String(idx + 1).padStart(2, '0')} / {["DISC", "PLAN", "SKETCH", "DESIGN", "DEV", "DROP"][idx]}</div>
-                  <h4 className="text-lg md:text-2xl font-black uppercase leading-none">{step}</h4>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Process Section (SYSTEM PROTOCOLS / SERVICES) - REWORKED */}
+        <ProcessScroller />
 
         {/* Testimonials */}
         <section className="py-32 px-6 bg-[#0a1208] border-b-4 border-primary-container">
@@ -235,33 +219,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="w-full py-24 px-6 bg-primary-container border-t-8 border-black text-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 mb-24">
-            <div className="text-6xl md:text-9xl font-black italic tracking-tighter">NUESTRO</div>
-            <div className="flex flex-col md:items-end gap-4 w-full md:w-auto">
-              <span className="font-black uppercase tracking-[0.5em] text-xs md:text-sm opacity-60">SOCIAL INSURGENCY //</span>
-              <div className="grid grid-cols-2 md:flex flex-wrap gap-4 md:gap-8 text-xl md:text-2xl font-black uppercase">
-                <a className="hover:italic hover:translate-x-2 transition-all" href="#">Insta</a>
-                <a className="hover:italic hover:translate-x-2 transition-all" href="#">X / TW</a>
-                <a className="hover:italic hover:translate-x-2 transition-all" href="#">LinkedIn</a>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row justify-between items-end border-t-4 border-black pt-8 gap-8">
-            <div className="font-black uppercase opacity-40 text-xs">
-              © 1984 - 2026 NUESTRO. <br />
-              NO RIGHTS RESERVED. <br />
-              DISTRIBUTED UNDER THE CHAOS LICENSE.
-            </div>
-            <div className="text-right">
-              <span className="font-black uppercase italic text-4xl">START A RIOT.</span>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
