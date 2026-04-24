@@ -24,7 +24,7 @@ export default function Footer() {
             DISTRIBUTED UNDER THE CHAOS LICENSE.
           </div>
           <div className="text-right">
-            <span className="font-black uppercase italic text-4xl">START A RIOT.</span>
+            <span className="font-black uppercase italic text-4xl">START A LATE NIGHT PROJECT.</span>
           </div>
         </div>
       </div>

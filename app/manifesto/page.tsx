@@ -23,7 +23,7 @@ export default function Manifesto() {
             />
           </div>
           <div className="relative z-10 max-w-5xl">
-            <p className="text-primary-container uppercase tracking-[0.5em] mb-8 text-sm font-black italic">The Core Philosophy // v1.0</p>
+            <p className="text-primary-container uppercase tracking-[0.5em] mb-8 text-sm font-black italic">The Studio Philosophy // v1.<span className="font-[family-name:var(--font-jetbrains-mono)] [font-variant-numeric:slashed-zero]">0</span></p>
             <h1 className="text-[clamp(4rem,15vw,12rem)] font-black leading-[0.85] uppercase tracking-tighter mb-4">
               THE<br/>MANIFESTO
             </h1>
@@ -39,9 +39,9 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">01</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">NO TEMPLATES. NO COMPROMISES.</h2>
+                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">NO TEMPLATES. NO “SOMEDAY” PROJECTS.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
-                  We don&apos;t recycle ideas. Every pixel, every line of code, and every strategy is forged from absolute zero. If it&apos;s been seen before, it&apos;s not ours. We reject the safety of the known.
+                  We don’t recycle starters or themes. Every project starts from a real problem, not a stock photo. If you can Google it already, we’d rather you ship something new.
                 </p>
               </div>
             </section>
@@ -54,7 +54,7 @@ export default function Manifesto() {
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
                 <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">FUNCTION DICTATES FORM.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
-                  Aesthetics without utility is just decoration. We build systems that work under pressure. Beauty is the byproduct of a solved problem, never the starting point.
+                  If your app looks cool but doesn’t solve anything, it’s just a screensaver. We design for the people who open the product at 2 a.m. and expect it to work, not just look good.
                 </p>
               </div>
             </section>
@@ -67,7 +67,7 @@ export default function Manifesto() {
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
                 <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">MEDIOCRITY IS A DISEASE.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
-                  Good enough is the enemy of great. We operate on the edge of discomfort. If it doesn&apos;t challenge the status quo, it is a waste of energy. We aim for the throat.
+                  Good enough is how side projects die. We push until the app is “good enough to ship,” then we ship it, iterate, and keep improving—because shipping is the only true deadline.
                 </p>
               </div>
             </section>
@@ -80,7 +80,7 @@ export default function Manifesto() {
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
                 <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">SPEED IS A FEATURE.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
-                  Perfection is an excuse for procrastination. We move with violent intent. Rapid iteration and uncompromising delivery are the markers of our process.
+                  Perfection is a luxury busy founders can’t afford. We move fast, ship early, and refine after; we’d rather ship a working MVP than polish a ghost project.
                 </p>
               </div>
             </section>
@@ -91,9 +91,9 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">05</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">IF IT DOESN&apos;T BITE BACK, IT&apos;S NOT READY.</h2>
+                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">IF IT DOESN’T WAKE YOU UP, IT’S NOT READY.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
-                  Passive design is dead design. Our work demands attention, forces interaction, and leaves a scar. We design for the bold, the loud, and the uncompromising.
+                  If using your own product feels like a chore, it’s not a product. It’s a homework assignment. We build things that feel like Saturday, not Sunday morning.
                 </p>
               </div>
             </section>

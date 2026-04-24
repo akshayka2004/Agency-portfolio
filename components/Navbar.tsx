@@ -51,7 +51,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-4">
           <Link href="/#contact" className="hidden sm:block bg-primary-container text-black px-6 py-2 font-black uppercase text-xs tracking-tighter border-2 border-black hover:bg-white transition-all active:translate-y-1">
-            Start a riot
+            Start a project
           </Link>
           
           {/* Mobile Toggle */}
@@ -107,7 +107,7 @@ export default function Navbar() {
 
               <div className="mt-auto pt-12 pb-8">
                 <Link onClick={() => setIsMenuOpen(false)} href="/#contact" className="block bg-primary-container text-black px-8 py-6 font-black uppercase text-2xl tracking-tighter border-4 border-black text-center active:translate-y-2 hover:bg-white transition-all shadow-[0_0_50px_rgba(60,249,26,0.2)]">
-                  Start a riot
+                  Start a project
                 </Link>
                 <p className="mt-8 text-[10px] font-black uppercase opacity-40 text-center tracking-[0.5em]">
                   NO RIGHTS RESERVED // 2026

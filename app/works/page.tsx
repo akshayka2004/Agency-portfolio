@@ -80,7 +80,7 @@ const PROJECTS = [
     label: "GESTURE CONTROL",
     image: "/assets/drawing app.png",
     tags: ["MediaPipe", "React", "Canvas"],
-    description: "A high-performance air drawing application using computer vision to track hand movements in real-time.",
+    description: "A high performance air drawing tool that tracks hand gestures in real time—because sometimes a mouse is just too awake.",
     link: "https://air-writing-app-wine.vercel.app"
   },
   {
@@ -90,7 +90,7 @@ const PROJECTS = [
     label: "AI ASSISTANT",
     image: "/assets/legal app.png",
     tags: ["Next.js", "OpenAI", "Tailwind"],
-    description: "An AI-powered legal assistant providing instant answers and document analysis for complex legal queries.",
+    description: "An AI powered legal assistant that answers questions and analyzes documents so you spend less time reading legalese and more time shipping.",
     link: "https://legal-care-kappa.vercel.app/home"
   },
   {
@@ -100,7 +100,7 @@ const PROJECTS = [
     label: "WEB3 / DEFI",
     image: "/assets/token app.png",
     tags: ["Solidity", "React", "Ethers.js"],
-    description: "Secure and intuitive token management platform for decentralized finance operations.",
+    description: "A secure, intuitive dashboard for managing tokens and DeFi activity—built for people who actually use their apps, not just screenshots.",
     link: "https://tricult-project.vercel.app"
   },
   {
@@ -110,7 +110,7 @@ const PROJECTS = [
     label: "COMPUTER VISION",
     image: "/assets/face sorter.png",
     tags: ["Python", "FaceRec", "Cloud"],
-    description: "Automated photo organization system using advanced facial recognition algorithms.",
+    description: "An automated photo organizer that groups faces so you can find that party pic without digging through 300 thumbnails.",
     link: "https://face-finder-lilac.vercel.app"
   }
 ];
@@ -128,7 +128,7 @@ export default function Works() {
             </h1>
             <div className="flex justify-center">
               <p className="text-lg md:text-3xl max-w-4xl font-black tracking-tight uppercase opacity-80 px-4">
-                Disrupting the digital monotony through brutal minimalism and uncompromising code.
+                A collection of side project turned products we built from midnight ideas and shipped before the sun came up.
               </p>
             </div>
           </div>
@@ -147,9 +147,9 @@ export default function Works() {
 
         {/* CTA Section */}
         <section className="py-32 px-6 md:px-12 text-center relative border-y-8 border-primary-container">
-          <h3 className="text-4xl md:text-6xl font-black uppercase mb-12 tracking-tight">Ready to break the system?</h3>
+          <h3 className="text-4xl md:text-6xl font-black uppercase mb-12 tracking-tight">Ready to ship something before the next all nighter?</h3>
           <Link href="/#contact" className="w-full max-w-4xl mx-auto block bg-primary-container text-black hover:bg-white transition-colors py-12 md:py-20 group">
-            <span className="text-5xl md:text-[8rem] font-black tracking-tighter leading-none uppercase group-hover:scale-105 transition-transform inline-block">Start a riot</span>
+            <span className="text-5xl md:text-[8rem] font-black tracking-tighter leading-none uppercase group-hover:scale-105 transition-transform inline-block">Start a late night project</span>
           </Link>
         </section>
       </main>
