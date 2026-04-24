@@ -37,7 +37,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full z-[100] border-b-4 border-primary-container px-4 md:px-6 py-4 bg-background/95 backdrop-blur-md transition-all">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-3xl md:text-4xl font-black italic tracking-tighter hover:text-primary-container transition-colors">
-          NUESTRO
+          T-MINUS <span className="font-[family-name:var(--font-jetbrains-mono)] [font-variant-numeric:slashed-zero] text-[1.2em] inline-block translate-y-[0.05em]">0</span>
         </Link>
         
         {/* Desktop Links */}
@@ -80,7 +80,9 @@ export default function Navbar() {
             <div className="flex flex-col h-full p-8 pt-32 overflow-y-auto">
               {/* Header duplicate for consistency */}
               <div className="absolute top-0 left-0 w-full p-4 px-6 flex justify-between items-center border-b-4 border-primary-container bg-black">
-                <Link onClick={() => setIsMenuOpen(false)} href="/" className="text-3xl font-black italic tracking-tighter">NUESTRO</Link>
+                <Link onClick={() => setIsMenuOpen(false)} href="/" className="text-3xl font-black italic tracking-tighter">
+                  T-MINUS <span className="font-[family-name:var(--font-jetbrains-mono)] [font-variant-numeric:slashed-zero] text-[1.2em] inline-block translate-y-[0.05em]">0</span>
+                </Link>
                 {/* Spacer for toggle button which stays on top */}
                 <div className="w-12"></div>
               </div>

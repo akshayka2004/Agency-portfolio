@@ -64,7 +64,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         </div>
 
         <Link href={project.link} className="inline-flex items-center gap-4 text-primary-container font-black uppercase text-xs tracking-[0.3em] group/btn">
-          <span className="border-b border-primary-container pb-1 group-hover/btn:pr-8 transition-all duration-300 italic">READ INTEL</span>
+          <span className="border-b border-primary-container pb-1 group-hover/btn:pr-8 transition-all duration-300 italic">TRY IT</span>
           <span className="material-symbols-outlined transform group-hover/btn:translate-x-2 transition-transform">arrow_forward</span>
         </Link>
       </div>
@@ -74,44 +74,44 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
 
 const PROJECTS = [
   {
-    id: "void",
-    title: "Project Zero",
+    id: "air-drawing",
+    title: "Air Drawing App",
     year: "2024",
-    label: "KERNEL-LEVEL UI",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA1yXNgNJKCfoTb3RIsAuh25inv9fgbDe8s5rXIN7aHCsTrUxW2UZH9EtTNckaZn6AC6h0WWDuyaT4RxfaT62z873yaPGAtglGbIe19M1V6eEzSnhyI3TXracBGpax6OCvTzvDoUT4HNKxfwrskA4OseF4Lj_oRauCjImxBwXd6bntD9avyc30Kmtx2YAYHaVjc0juApKpoNdJlr4pYw0_qzsIG79Za1S8_6us1Ys4BBFgIJ7EXwyk6MpmxkFz8SLDhAznufbZ3jW0S",
-    tags: ["Rust", "WASM", "Graphics"],
-    description: "A deep-dive into high-performance user interfaces built at the system level. No browser overhead. Just raw power.",
-    link: "#void"
+    label: "GESTURE CONTROL",
+    image: "/assets/drawing app.png",
+    tags: ["MediaPipe", "React", "Canvas"],
+    description: "A high-performance air drawing application using computer vision to track hand movements in real-time.",
+    link: "https://air-writing-app-wine.vercel.app"
   },
   {
-    id: "neon",
-    title: "Neon Pulse",
+    id: "legal-bot",
+    title: "Legal Assistant",
     year: "2024",
-    label: "GLSL SHADERS",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB2ABz_9pJ3g0WF_WZCPZpYutAy-5ii_4pxoPjQoUJS89ML8XJJqf0s5DLZ3UwkZVRFXh4ACkcufTGnDmLoV6geb-4Gl0Ns3Ed_8Rrx2AdeUctoP48TVOZuvQmzD2kXaubqWJ-8D7JkYsxuVlZBWwjgIjdCxGIAmg3Kf8gKOn4B824Bfeuqvw98qw8AbaOnj2o4_SF-NA0CJrIFyHPXwZBVeQsF7Fkt0vTvgRJl-UUpQ8hu7ha52d17YdjkdtcAMfEc_sAHYPHsFZyn",
-    tags: ["Three.js", "Real-time", "Audio"],
-    description: "Visualizing the heartbeat of the underground digital scene through real-time audio analysis and custom shaders.",
-    link: "#neon"
+    label: "AI ASSISTANT",
+    image: "/assets/legal app.png",
+    tags: ["Next.js", "OpenAI", "Tailwind"],
+    description: "An AI-powered legal assistant providing instant answers and document analysis for complex legal queries.",
+    link: "https://legal-care-kappa.vercel.app/home"
   },
   {
-    id: "cyber",
-    title: "Cyber-Skins",
-    year: "2023",
-    label: "E-COMMERCE",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDT2dwxISMsJDo89WNwrff2RdmYmQtLKiGT01nbqnSADk6DNZJFvQA4iH-irxfCJ1kYxZsbkyUHf_Y9dKfhrt8dNzJRZ1sHEEF7tYIOFFGYgKiRKYezxtgRI1wua3FeikNwFCmFevUWWcFjDQSmMuZHrjSuBs_An0Y2L8HrQCChz0HE179GXjm4o9iO4k3_eNGi9kWxplOkESOvqyt5O8aNdvzjPRLFPWoAfrRZSK5HCVJj1ZUTpl--K242-UmIiI6fR0rcEwY94TGl",
-    tags: ["Next.js", "Tailwind", "Cart"],
-    description: "Disrupting the e-commerce monotony with an uncompromising digital store for high-end digital assets.",
-    link: "#cyber"
+    id: "token-mgmt",
+    title: "Token Manager",
+    year: "2024",
+    label: "WEB3 / DEFI",
+    image: "/assets/token app.png",
+    tags: ["Solidity", "React", "Ethers.js"],
+    description: "Secure and intuitive token management platform for decentralized finance operations.",
+    link: "https://tricult-project.vercel.app"
   },
   {
-    id: "riot",
-    title: "Riot OS",
-    year: "2023",
-    label: "SYSTEM DESIGN",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA73CZZrcbgUcdimfV-6nQU-jbcRP6AB_XBSn-ZfXSqfR_ConfkHNE3_nzUB5edket-F6lIjaPvS9xK2tMl4wynioN5h9_A0AQxS-kQBWH3hepBK4b_na5egpbqplh2rQHoAwwCSLTM6q140UP3CWo6g1X4I-QVlIh_gRvHqfx_g7-c9_8P6LDkR4kIjVHp9He2NMaIvV7bU6U2ul39hdBM6Cku_8mnJSuOhJu5wEiFbF_-7366wI-IJVDe7NiTWER5HdQdrwzRRKV7",
-    tags: ["C++", "Assembly", "Low-level"],
-    description: "A custom operating system kernel designed for speed and security in an increasingly hostile digital landscape.",
-    link: "#riot"
+    id: "photo-sorter",
+    title: "Face Sorter",
+    year: "2024",
+    label: "COMPUTER VISION",
+    image: "/assets/face sorter.png",
+    tags: ["Python", "FaceRec", "Cloud"],
+    description: "Automated photo organization system using advanced facial recognition algorithms.",
+    link: "https://face-finder-lilac.vercel.app"
   }
 ];
 

@@ -132,19 +132,19 @@ export default function Home() {
           <h2 className="text-6xl md:text-[10rem] font-black uppercase tracking-tighter mb-12 md:20 text-outline leading-none">Selected <br />Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {/* Project 1 */}
-            <Link href="/works#void" className="group relative border-4 border-primary-container overflow-hidden aspect-video md:aspect-auto block">
-              <Image src="/assets/void.png" width={800} height={500} alt="Void" className="w-full h-full md:h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+            <Link href="/works" className="group relative border-4 border-primary-container overflow-hidden aspect-video md:aspect-auto block">
+              <Image src="/assets/drawing app.png" width={800} height={500} alt="Air Drawing" className="w-full h-full md:h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-all flex flex-col justify-end p-6 md:p-12">
-                <span className="text-primary-container font-black tracking-widest text-xs md:text-sm mb-2 md:4 uppercase">// FINTECH REBELLION</span>
-                <h3 className="text-4xl md:text-6xl font-black uppercase leading-none">PROJECT: VOID</h3>
+                <span className="text-primary-container font-black tracking-widest text-xs md:text-sm mb-2 md:4 uppercase">// GESTURE CONTROL</span>
+                <h3 className="text-4xl md:text-6xl font-black uppercase leading-none">AIR DRAWING APP</h3>
               </div>
             </Link>
             {/* Project 2 */}
-            <Link href="/works#cyber" className="group relative border-4 border-primary-container overflow-hidden aspect-video md:aspect-auto block">
-              <Image src="/assets/cyber.png" width={800} height={500} alt="Cyber-Skins" className="w-full h-full md:h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+            <Link href="/works" className="group relative border-4 border-primary-container overflow-hidden aspect-video md:aspect-auto block">
+              <Image src="/assets/face sorter.png" width={800} height={500} alt="Face Finder" className="w-full h-full md:h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-all flex flex-col justify-end p-6 md:p-12">
-                <span className="text-primary-container font-black tracking-widest text-xs md:text-sm mb-2 md:4 uppercase">// E-COM DISRUPT</span>
-                <h3 className="text-4xl md:text-6xl font-black uppercase leading-none">CYBER-SKINS</h3>
+                <span className="text-primary-container font-black tracking-widest text-xs md:text-sm mb-2 md:4 uppercase">// COMPUTER VISION</span>
+                <h3 className="text-4xl md:text-6xl font-black uppercase leading-none">FACE FINDER</h3>
               </div>
             </Link>
           </div>
@@ -172,7 +172,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="bg-background p-8 md:p-12 flex flex-col justify-between">
-                <p className="text-2xl md:text-4xl font-black uppercase tracking-tight leading-none mb-12">"NUESTRO DESTROYED EVERY TEMPLATE-BASED ASSUMPTION WE HAD."</p>
+                <p className="text-2xl md:text-4xl font-black uppercase tracking-tight leading-none mb-12">"T-MINUS <span className="font-[family-name:var(--font-jetbrains-mono)] [font-variant-numeric:slashed-zero] text-[1.2em]">0</span> DESTROYED EVERY TEMPLATE-BASED ASSUMPTION WE HAD."</p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-2 bg-primary-container"></div>
                   <span className="font-black uppercase tracking-tighter opacity-70 text-xs md:text-base">FOUNDER / VOID PROTOCOL</span>
@@ -191,7 +191,7 @@ export default function Home() {
                 Don't reach out if you want a template. Reach out if you want a riot.
               </p>
               <div className="space-y-8">
-                <a href="mailto:riot@nuestro.agency" className="block text-4xl md:text-5xl font-black underline decoration-primary-container decoration-8 underline-offset-8 hover:text-primary-container transition-all">riot@nuestro.agency</a>
+                <a href="mailto:riot@tminus0.agency" className="block text-4xl md:text-5xl font-black underline decoration-primary-container decoration-8 underline-offset-8 hover:text-primary-container transition-all">riot@tminus0.agency</a>
                 <div className="text-4xl md:text-5xl font-black opacity-50">+1 (555) BORN-TO-WIN</div>
               </div>
             </div>
