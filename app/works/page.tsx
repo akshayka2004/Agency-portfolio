@@ -123,7 +123,7 @@ export default function Works() {
         {/* Header Section - RETAINED */}
         <section className="min-h-[60vh] pt-32 flex flex-col items-center justify-center px-4 md:px-12 border-b-4 border-primary-container relative overflow-hidden">
           <div className="w-full text-center z-10">
-            <h1 className="text-[clamp(4rem,15vw,18rem)] font-black leading-[0.75] tracking-tighter uppercase mb-8">
+            <h1 className="text-[clamp(3.5rem,15vw,15rem)] font-black leading-[0.75] tracking-tighter uppercase mb-8">
               Works<span className="text-primary-container animate-[blink_1s_steps(2,start)_infinite]">.</span>
             </h1>
             <div className="flex justify-center">

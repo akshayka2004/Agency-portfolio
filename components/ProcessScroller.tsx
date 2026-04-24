@@ -1,16 +1,14 @@
 "use client";
 import { motion, useScroll, useTransform, useMotionValue, useVelocity, useSpring, type MotionValue } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 /* ── constants ── */
-const CARD_W  = 340;
+const DEFAULT_CARD_W = 340;
 const CARD_H  = 560;
 const TAG_H   = 76;
 const HOLE_D  = 44;
 const ROD_H   = 14;
 const GAP     = 20;
-const SLOT_W  = CARD_W + GAP;
-const PAD_L   = 60;
 const PAD_T   = 60;
 const ROD_Y   = PAD_T + TAG_H / 2 - ROD_H / 2; // absolute top of rod in scroller
 const ROD_G   = "linear-gradient(to bottom,#020202 0%,#222 25%,#3a3a3a 50%,#222 75%,#010101 100%)";
@@ -37,7 +35,8 @@ const SERVICES = [
   ══════════════════════════════════════════════════════
 */
 
-function ServiceCard({ s, rot }: { s: typeof SERVICES[0]; rot: MotionValue<number> }) {
+function ServiceCard({ s, rot, cardW }: { s: typeof SERVICES[0]; rot: MotionValue<number>; cardW: number }) {
+  const slotW   = cardW + GAP;
   const acc     = s.accent;
   const isLight = acc === "#e2e2e2";
   const dimTxt  = "rgba(0,0,0,0.42)";
@@ -45,20 +44,18 @@ function ServiceCard({ s, rot }: { s: typeof SERVICES[0]; rot: MotionValue<numbe
   const mrkrC   = isLight ? "rgba(255,255,255,0.38)" : `${acc}70`;
   const divLine = isLight ? "rgba(255,255,255,0.07)" : `${acc}14`;
   const labelC  = isLight ? "rgba(255,255,255,0.28)" : `${acc}52`;
-
-  const pivotX = CARD_W / 2;
-  const pivotY = TAG_H / 2;
+  const pivotX  = cardW / 2;
+  const pivotY  = TAG_H / 2;
 
   return (
-    <div style={{ width: SLOT_W, flexShrink: 0, position: "relative" }}>
+    <div style={{ width: slotW, flexShrink: 0, position: "relative" }}>
       
       {/* ── CARD LAYER (z: 1) ─────────────────────── */}
-      {/* Card sits entirely in front of the background rod (z: 0). */}
       <motion.div
         style={{
           rotate: rot,
           transformOrigin: `${pivotX}px ${pivotY}px`,
-          width: CARD_W,
+          width: cardW,
           height: CARD_H,
           position: "relative",
           zIndex: 1,
@@ -158,7 +155,7 @@ function ServiceCard({ s, rot }: { s: typeof SERVICES[0]; rot: MotionValue<numbe
         position: "absolute",
         top: TAG_H / 2 - ROD_H / 2, // Centered vertically in tag
         left: pivotX,               // Starts at horizontal center of hole
-        width: CARD_W / 2 + GAP,    // Extends across right half of card + gap
+        width: cardW / 2 + GAP,    // Extends across right half of card + gap
         height: ROD_H,
         zIndex: 4,                  // Above the card
         background: ROD_G,
@@ -177,14 +174,28 @@ export function ProcessScroller() {
   const raw = useMotionValue(0);
   const rot = useSpring(raw, { stiffness: 55, damping: 14, mass: 1.4 });
 
-  useEffect(() => vel.on("change", v => raw.set(Math.max(-10, Math.min(10, v / 100)))), [vel, raw]);
+  useEffect(() => {
+    return vel.on("change", (v: number) => raw.set(Math.max(-10, Math.min(10, v / 100))));
+  }, [vel, raw]);
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end start"] });
   const hO = useTransform(scrollYProgress, [0, 0.08, 0.2], [0, 0, 1]);
   const hY = useTransform(scrollYProgress, [0, 0.08, 0.2], [56, 56, 0]);
 
-  const contentW = PAD_L + SERVICES.length * SLOT_W + 40;
-  const maxLeft  = typeof window !== "undefined" ? Math.min(0, window.innerWidth - contentW) : -2600;
+  const [winSize, setWinSize] = useState({ w: 1200, isMobile: false });
+
+  useEffect(() => {
+    const handle = () => setWinSize({ w: window.innerWidth, isMobile: window.innerWidth < 768 });
+    handle();
+    window.addEventListener("resize", handle);
+    return () => window.removeEventListener("resize", handle);
+  }, []);
+
+  const cardW    = winSize.isMobile ? 280 : 340;
+  const padL     = winSize.isMobile ? 20 : 60;
+  const slotW    = cardW + GAP;
+  const contentW = padL + SERVICES.length * slotW + 40;
+  const maxLeft  = Math.min(0, winSize.w - contentW);
   const scrollH  = PAD_T + CARD_H + 32;
 
   return (
@@ -195,7 +206,7 @@ export function ProcessScroller() {
       {/* header */}
       <motion.div style={{ opacity: hO, y: hY }} className="px-8 md:px-20 pt-28 pb-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-primary-container/20">
-          <h2 className="font-black uppercase tracking-tighter leading-[0.8] text-foreground" style={{ fontSize: "clamp(3.5rem,10vw,8rem)" }}>
+          <h2 className="font-black uppercase tracking-tighter leading-[0.8] text-foreground" style={{ fontSize: "clamp(3rem, 12vw, 8rem)" }}>
             Services<span className="text-primary-container animate-[blink_1s_steps(2,start)_infinite]">.</span>
           </h2>
           <p className="text-sm font-bold uppercase opacity-50 max-w-[250px] leading-snug tracking-tight text-foreground">
@@ -219,7 +230,7 @@ export function ProcessScroller() {
           style={{
             x,
             display: "flex", alignItems: "flex-start",
-            paddingTop: PAD_T, paddingLeft: PAD_L, paddingRight: 40,
+            paddingTop: PAD_T, paddingLeft: padL, paddingRight: 40,
             position: "absolute", top: 0, left: 0,
             cursor: "grab", userSelect: "none",
             zIndex: 1,
@@ -227,7 +238,7 @@ export function ProcessScroller() {
           }}
           whileTap={{ cursor: "grabbing" }}
         >
-          {SERVICES.map(s => <ServiceCard key={s.code} s={s} rot={rot} />)}
+          {SERVICES.map(s => <ServiceCard key={s.code} s={s} rot={rot} cardW={cardW} />)}
         </motion.div>
 
       </div>

@@ -58,7 +58,7 @@ export default function Home() {
         {/* Manifesto Section */}
         <section id="manifesto" className="bg-primary-container text-black py-20 md:py-32 px-4 md:px-12 border-y-8 border-black">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-6xl md:text-[12rem] font-black italic tracking-tighter leading-none mb-12">MANIFESTO</h2>
+            <h2 className="text-[clamp(3.5rem,15vw,12rem)] font-black italic tracking-tighter leading-none mb-12">MANIFESTO</h2>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
               <p className="text-2xl md:text-6xl font-black uppercase leading-[0.9] max-w-4xl">
                 NO TEMPLATES. NO “SOMEDAY” PROJECTS. <br />
@@ -162,7 +162,7 @@ export default function Home() {
         {/* Testimonials */}
         <section className="py-32 px-6 bg-[#0a1208] border-b-4 border-primary-container">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-7xl font-black uppercase tracking-tighter mb-20 text-outline">What they say</h2>
+            <h2 className="text-6xl md:text-7xl font-black uppercase tracking-tighter mb-20 text-outline">What they say</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-primary-container border-4 border-primary-container shadow-[10px_10px_0px_0px_rgba(57,255,20,0.1)] md:shadow-[20px_20px_0px_0px_rgba(57,255,20,0.1)]">
               <div className="bg-background p-8 md:p-12 flex flex-col justify-between">
                 <p className="text-2xl md:text-4xl font-black uppercase tracking-tight leading-none mb-12">"They didn’t just build an app; they shipped it before we even finished our second call."</p>
@@ -186,7 +186,7 @@ export default function Home() {
         <section id="contact" className="py-32 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start">
             <div className="md:col-span-5">
-              <h2 className="text-8xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] mb-12">TALK IS FREE. <br />SLEEP IS PRICELESS.</h2>
+              <h2 className="text-[clamp(4rem,12vw,10rem)] font-black uppercase tracking-tighter leading-[0.8] mb-12">TALK IS FREE. <br />SLEEP IS PRICELESS.</h2>
               <p className="text-lg font-bold uppercase tracking-tight opacity-70 mb-16 max-w-sm">
                 Reach out if you have an idea you want to ship, not just to “look at options.” We don’t do templates; we do working products.
               </p>

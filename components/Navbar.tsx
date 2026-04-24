@@ -97,7 +97,7 @@ export default function Navbar() {
                   >
                     <Link onClick={() => setIsMenuOpen(false)} href={link.href} className="group block">
                       <span className="text-primary-container font-black text-xs tracking-widest block mb-2 opacity-50">{link.id}</span>
-                      <span className="text-6xl font-black uppercase tracking-tighter hover:text-neon-green transition-colors block">
+                      <span className="text-[clamp(3rem,15vw,6xl)] font-black uppercase tracking-tighter hover:text-neon-green transition-colors block">
                         {link.name}
                       </span>
                     </Link>

@@ -39,7 +39,7 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">01</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">NO TEMPLATES. NO “SOMEDAY” PROJECTS.</h2>
+                <h2 className="text-[clamp(2rem,8vw,4.5rem)] font-black uppercase tracking-tighter mb-8 leading-none">NO TEMPLATES. NO “SOMEDAY” PROJECTS.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
                   We don’t recycle starters or themes. Every project starts from a real problem, not a stock photo. If you can Google it already, we’d rather you ship something new.
                 </p>
@@ -52,7 +52,7 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">02</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">FUNCTION DICTATES FORM.</h2>
+                <h2 className="text-[clamp(2rem,8vw,4.5rem)] font-black uppercase tracking-tighter mb-8 leading-none">FUNCTION DICTATES FORM.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
                   If your app looks cool but doesn’t solve anything, it’s just a screensaver. We design for the people who open the product at 2 a.m. and expect it to work, not just look good.
                 </p>
@@ -65,7 +65,7 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">03</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">MEDIOCRITY IS A DISEASE.</h2>
+                <h2 className="text-[clamp(2rem,8vw,4.5rem)] font-black uppercase tracking-tighter mb-8 leading-none">MEDIOCRITY IS A DISEASE.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
                   Good enough is how side projects die. We push until the app is “good enough to ship,” then we ship it, iterate, and keep improving—because shipping is the only true deadline.
                 </p>
@@ -78,7 +78,7 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">04</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">SPEED IS A FEATURE.</h2>
+                <h2 className="text-[clamp(2rem,8vw,4.5rem)] font-black uppercase tracking-tighter mb-8 leading-none">SPEED IS A FEATURE.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
                   Perfection is a luxury busy founders can’t afford. We move fast, ship early, and refine after; we’d rather ship a working MVP than polish a ghost project.
                 </p>
@@ -91,7 +91,7 @@ export default function Manifesto() {
                 <span className="text-7xl md:text-9xl font-black text-primary-container leading-none italic">05</span>
               </div>
               <div className="md:col-span-10 border-l border-white/10 pl-8 md:pl-12">
-                <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">IF IT DOESN’T WAKE YOU UP, IT’S NOT READY.</h2>
+                <h2 className="text-[clamp(2rem,8vw,4.5rem)] font-black uppercase tracking-tighter mb-8 leading-none">IF IT DOESN’T WAKE YOU UP, IT’S NOT READY.</h2>
                 <p className="text-xl md:text-2xl text-foreground font-medium opacity-60 leading-relaxed max-w-3xl">
                   If using your own product feels like a chore, it’s not a product. It’s a homework assignment. We build things that feel like Saturday, not Sunday morning.
                 </p>
