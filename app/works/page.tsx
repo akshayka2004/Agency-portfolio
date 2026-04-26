@@ -55,30 +55,46 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               ))}
             </div>
 
-            {/* Micro Storytelling */}
-            <div className="flex flex-col gap-6 py-8 px-8 bg-white/40 rounded-2xl border border-border/20 backdrop-blur-sm shadow-sm">
+            {/* Micro Storytelling: Problem -> Solution -> Impact */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 py-8 px-8 bg-white/40 rounded-2xl border border-border/20 backdrop-blur-sm shadow-sm">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">The Problem</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">Problem</span>
                 </div>
-                <p className="text-sm text-[#64748B] font-medium leading-relaxed pl-3.5">{project.problem}</p>
+                <p className="text-[12px] text-[#64748B] font-bold leading-relaxed">{project.problem}</p>
               </div>
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">The Solution</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">Solution</span>
                 </div>
-                <p className="text-sm text-[#64748B] font-medium leading-relaxed pl-3.5">{project.solution}</p>
+                <p className="text-[12px] text-[#64748B] font-bold leading-relaxed">{project.solution}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">Impact</span>
+                </div>
+                <p className="text-[12px] text-[#64748B] font-bold leading-relaxed">{project.impact}</p>
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="flex flex-wrap gap-4 pt-2">
               <a 
                 href={project.link} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center bg-[#16A34A] text-white px-6 py-[14px] rounded-xl font-bold text-xs uppercase tracking-[0.15em] shadow-lg shadow-accent/20 hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
+                className="inline-flex items-center justify-center bg-[#16A34A] text-white px-8 py-[14px] rounded-xl font-bold text-xs uppercase tracking-[0.15em] shadow-lg shadow-accent/20 hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
+              >
+                Try it Live
+                <span className="material-symbols-outlined ml-2.5 text-base">rocket_launch</span>
+              </a>
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center justify-center bg-white text-[#0F172A] border border-border px-8 py-[14px] rounded-xl font-bold text-xs uppercase tracking-[0.15em] hover:bg-bg hover:-translate-y-1 transition-all duration-300"
               >
                 View Project
                 <span className="material-symbols-outlined ml-2.5 text-base">arrow_outward</span>
@@ -122,8 +138,9 @@ const PROJECTS = [
     image: "/assets/drawing app.png",
     tags: ["MediaPipe", "React", "Canvas"],
     description: "A high-performance air drawing tool that tracks hand gestures in real-time, allowing for a completely touchless creative experience.",
-    problem: "Digital artists are often tethered to tablets and mice, restricting natural 3D expression.",
-    solution: "AI-powered gesture recognition enables mid-air sketching with near-zero latency.",
+    problem: "Restricted creativity in 3D.",
+    solution: "Zero-latency gesture AI.",
+    impact: "Touchless design freedom.",
     link: "https://air-writing-app-wine.vercel.app"
   },
   {
@@ -134,8 +151,9 @@ const PROJECTS = [
     image: "/assets/legal app.png",
     tags: ["Next.js", "OpenAI", "Tailwind"],
     description: "An intelligent legal research companion that analyzes complex documentation and provides structured summaries in seconds.",
-    problem: "Manually auditing legal contracts consumes hundreds of hours and increases compliance risks.",
-    solution: "A custom LLM workflow that instantly flags risky clauses and generates plain-language summaries.",
+    problem: "Manual contract auditing.",
+    solution: "LLM-powered risk flagging.",
+    impact: "80% faster document audit.",
     link: "https://legal-care-kappa.vercel.app/home"
   },
   {
@@ -146,8 +164,9 @@ const PROJECTS = [
     image: "/assets/token app.png",
     tags: ["Solidity", "React", "Ethers.js"],
     description: "A secure, institutional-grade dashboard for cross-chain token management and decentralized finance operations.",
-    problem: "Web3 asset management is fragmented across protocols, making tracking and security difficult.",
-    solution: "A unified portal that aggregates multi-chain data into a single, high-security dashboard.",
+    problem: "Fragmented DeFi assets.",
+    solution: "Unified multi-chain portal.",
+    impact: "Secure institutional control.",
     link: "https://tricult-project.vercel.app"
   },
   {
@@ -158,8 +177,9 @@ const PROJECTS = [
     image: "/assets/face sorter.png",
     tags: ["Python", "FaceRec", "Cloud"],
     description: "Automated biometric photo organization that instantly categorizes massive event galleries into searchable person-specific folders.",
-    problem: "Finding specific photos in event galleries with thousands of images is a manual nightmare.",
-    solution: "High-speed computer vision indexes faces instantly for immediate, personalized retrieval.",
+    problem: "Manual event photo search.",
+    solution: "Biometric indexing engine.",
+    impact: "Instant personalized search.",
     link: "https://face-finder-lilac.vercel.app"
   }
 ];
@@ -179,13 +199,13 @@ export default function Works() {
               className="flex flex-col items-center"
             >
               <div className="bg-accent-light text-accent font-bold text-[10px] tracking-[0.4em] uppercase mb-8 px-4 py-1.5 rounded-full">
-                Portfolio // 2026
+                Product Archive // 2026
               </div>
               <h1 className="text-[clamp(3.5rem,12vw,8rem)] font-bold leading-[0.9] tracking-tighter mb-10 text-[#0F172A]">
-                The Projects<span className="text-accent">.</span>
+                The Works<span className="text-accent">.</span>
               </h1>
               <p className="text-lg sm:text-xl max-w-2xl mx-auto font-medium text-[#64748B] leading-relaxed">
-                A selection of digital products and engineering experiments focused on speed, utility, and refined aesthetics.
+                Case studies of digital products we've engineered from scratch. Structured by problem, solution, and real-world impact.
               </p>
             </motion.div>
           </div>
@@ -215,13 +235,22 @@ export default function Works() {
               </p>
             </motion.div>
             
-            <Link 
-              href="/#contact" 
-              className="group relative inline-flex items-center justify-center bg-[#16A34A] text-white px-8 py-[14px] rounded-xl font-bold text-lg sm:text-xl tracking-tight shadow-[0_20px_40px_rgba(22,163,74,0.25)] hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
-            >
-              Start a conversation
-              <span className="material-symbols-outlined ml-3 text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link 
+                href="/#contact" 
+                className="group relative inline-flex items-center justify-center bg-[#16A34A] text-white px-8 py-[14px] rounded-xl font-bold text-lg sm:text-xl tracking-tight shadow-[0_20px_40px_rgba(22,163,74,0.25)] hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
+              >
+                Start a project
+                <span className="material-symbols-outlined ml-3 text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </Link>
+              <Link 
+                href="https://calendly.com" 
+                className="group relative inline-flex items-center justify-center bg-white text-[#0F172A] border border-border px-8 py-[14px] rounded-xl font-bold text-lg sm:text-xl tracking-tight hover:bg-bg hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
+              >
+                Book a Call
+                <span className="material-symbols-outlined ml-3 text-xl group-hover:translate-x-1 transition-transform">event</span>
+              </Link>
+            </div>
           </div>
         </section>
 
