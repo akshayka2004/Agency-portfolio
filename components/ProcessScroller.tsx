@@ -201,17 +201,17 @@ export function ProcessScroller() {
   return (
     <section ref={containerRef} id="services" aria-label="Services"
       style={{ backgroundColor: "#FFFFFF", overflow: "hidden", position: "relative" }}
-      className="border-y border-[#E2E8F0]"
+      className="border-y border-border"
     >
       {/* header */}
       <motion.div style={{ opacity: hO, y: hY }} className="px-8 md:px-20 pt-28 pb-20">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-[#E2E8F0]">
-          <h2 className="font-bold tracking-tight leading-[0.8] text-[#0F172A]" style={{ fontSize: "clamp(3rem, 12vw, 8rem)" }}>
-            Services<span className="text-[#16A34A] animate-[blink_1s_steps(2,start)_infinite]">.</span>
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-border">
+          <h2 className="font-bold tracking-tight leading-[0.8] text-text-primary" style={{ fontSize: "clamp(3rem, 12vw, 8rem)" }}>
+            Services<span className="text-accent animate-[blink_1s_steps(2,start)_infinite]">.</span>
           </h2>
-          <p className="text-sm font-semibold uppercase opacity-70 max-w-[250px] leading-snug tracking-tight text-[#64748B]">
+          <p className="text-sm font-semibold uppercase opacity-70 max-w-[250px] leading-snug tracking-tight text-text-secondary">
             Full-stack creative execution — from ground zero to award-worthy launch.{" "}
-            <span className="text-[#16A34A] opacity-100">Start a riot.</span>
+            <span className="text-accent opacity-100">Start a riot.</span>
           </p>
         </div>
       </motion.div>

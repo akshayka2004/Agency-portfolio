@@ -43,7 +43,7 @@ function FloatingPaths({ position }: { position: number }) {
             className="absolute inset-0 pointer-events-none"
         >
             <svg
-                className="w-full h-full text-primary-container"
+                className="w-full h-full text-accent-light"
                 viewBox="0 0 696 316"
                 fill="none"
             >
@@ -81,7 +81,7 @@ export function BackgroundPaths({
     const words = title.split(" ");
 
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-bg">
             <div className="absolute inset-0">
                 <FloatingPaths position={1} />
                 <FloatingPaths position={-1} />
@@ -113,7 +113,7 @@ export function BackgroundPaths({
                                             stiffness: 100,
                                             damping: 15,
                                         }}
-                                        className="inline-block text-primary-container"
+                                        className="inline-block text-accent-light"
                                     >
                                         {letter}
                                     </motion.span>
@@ -123,15 +123,15 @@ export function BackgroundPaths({
                     </h1>
 
                     <div
-                        className="inline-block group relative bg-primary-container/10 p-px rounded-2xl backdrop-blur-lg 
-                        overflow-hidden shadow-[0_0_20px_rgba(60,249,26,0.1)] hover:shadow-[0_0_30px_rgba(60,249,26,0.2)] transition-shadow duration-300"
+                        className="inline-block group relative bg-accent-light/10 p-px rounded-2xl backdrop-blur-lg 
+                        overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
                     >
                         <Button
                             variant="ghost"
                             className="rounded-xl px-12 py-8 text-2xl font-black uppercase tracking-tighter backdrop-blur-md 
-                            bg-primary-container text-black hover:bg-white transition-all duration-300 
-                            group-hover:-translate-y-1 border-2 border-primary-container
-                            hover:shadow-lg shadow-black"
+                            bg-accent-light text-text-primary hover:bg-surface transition-all duration-300 
+                            group-hover:-translate-y-1 border-2 border-accent-light
+                            hover:shadow-lg"
                             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                         >
                             <span className="opacity-90 group-hover:opacity-100 transition-opacity">
@@ -148,8 +148,7 @@ export function BackgroundPaths({
                 </motion.div>
             </div>
             
-            {/* Scanline and Grain integration for this specific section */}
-            <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px]"></div>
+            {/* Removed Scanline and Grain integration to match clean light theme */}
         </div>
     );
 }
