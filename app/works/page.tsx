@@ -8,92 +8,102 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
-  // Alternate the side of the image for visual rhythm
+  // Alternate side for each project
   const isEven = index % 2 === 0;
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`group w-full max-w-7xl mx-auto py-20 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 border-b border-border/50 last:border-0 ${
-        isEven ? "bg-[#F8FAFC]" : "bg-[#FFFFFF]"
-      }`}
+    <div 
+      className={`w-full ${isEven ? "bg-[#F8FAFC]" : "bg-[#FFFFFF]"}`}
     >
-      <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center ${isEven ? "" : "lg:flex-row-reverse"}`}>
-        
-        {/* Info Column */}
-        <div className={`flex flex-col gap-6 sm:gap-8 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <span className="text-accent font-bold text-sm tracking-widest uppercase">
-                Project {String(index + 1).padStart(2, '0')}
-              </span>
-              <div className="h-px w-8 bg-accent/30"></div>
-              <span className="text-text-secondary text-sm font-medium">{project.year}</span>
-            </div>
-            
-            <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold tracking-tight text-text-primary leading-[1.05]">
-              {project.title}
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag: string) => (
-              <span 
-                key={tag} 
-                className="bg-[#DCFCE7] text-[#166534] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide border border-[#16A34A]/10"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-text-secondary text-lg sm:text-xl font-medium leading-relaxed max-w-xl">
-            {project.description}
-          </p>
-
-          <div className="flex flex-col gap-4 py-4 border-l-2 border-accent/20 pl-6">
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/60">Problem</span>
-              <p className="text-sm text-text-primary font-semibold">{project.problem}</p>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/60">Solution</span>
-              <p className="text-sm text-text-primary font-semibold">{project.solution}</p>
-            </div>
-          </div>
-
-          <div className="pt-4">
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-flex items-center justify-center bg-accent text-surface px-8 py-4 rounded-[12px] font-bold text-sm uppercase tracking-wider shadow-lg hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all active:scale-[0.98]"
-            >
-              View Project
-              <span className="material-symbols-outlined ml-2 text-lg">arrow_outward</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Visual Column */}
-        <div className={`relative ${isEven ? "lg:order-2" : "lg:order-1"}`}>
-          <div className="relative rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-border/50 aspect-[4/3] group/img">
-            <img
-              className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 ease-out"
-              src={project.image}
-              alt={project.title}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500"></div>
-          </div>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-7xl mx-auto py-24 sm:py-32 px-6 sm:px-10 md:px-16"
+      >
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center ${isEven ? "" : "lg:flex-row-reverse"}`}>
           
-          {/* Subtle Decorative Elements */}
-          <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+          {/* Info Column */}
+          <div className={`flex flex-col gap-8 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
+            <div className="flex flex-col gap-5">
+              <div className="flex items-center gap-4">
+                <span className="text-accent font-bold text-xs tracking-[0.3em] uppercase">
+                  Project {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className="text-text-secondary text-xs font-bold tracking-widest">{project.year}</span>
+              </div>
+              
+              <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-bold tracking-tight text-[#0F172A] leading-[1.05]">
+                {project.title}
+              </h2>
+              
+              <p className="text-[#64748B] text-lg sm:text-xl font-medium leading-relaxed max-w-xl">
+                {project.description}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2.5">
+              {project.tags.map((tag: string) => (
+                <span 
+                  key={tag} 
+                  className="bg-[#DCFCE7] text-[#166534] px-3 py-1.5 rounded-full text-xs font-bold tracking-wide"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Micro Storytelling */}
+            <div className="flex flex-col gap-5 py-6 px-8 bg-white/50 rounded-2xl border border-border/30 backdrop-blur-sm">
+              <div className="flex flex-col gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent/70">The Problem</span>
+                <p className="text-sm text-[#0F172A] font-bold leading-relaxed">{project.problem}</p>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent/70">The Solution</span>
+                <p className="text-sm text-[#0F172A] font-bold leading-relaxed">{project.solution}</p>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center justify-center bg-[#16A34A] text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest shadow-xl hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
+              >
+                View Project
+                <span className="material-symbols-outlined ml-2.5 text-lg">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Visual Column */}
+          <div className={`relative ${isEven ? "lg:order-2" : "lg:order-1"}`}>
+            <motion.div 
+              whileHover={{ scale: 1.02, translateY: -8 }}
+              transition={{ duration: 0.4 }}
+              className="relative rounded-[20px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-border/40 aspect-[4/3] group/img bg-[#F1F5F9]"
+            >
+              <img
+                className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover/img:scale-110"
+                src={project.image}
+                alt={project.title}
+                onError={(e) => {
+                  // Fallback for missing images
+                  (e.target as HTMLImageElement).src = `https://placehold.co/800x600/f1f5f9/16a34a?text=${project.title.replace(' ', '+')}`;
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500"></div>
+            </motion.div>
+            
+            {/* Soft decorative glow */}
+            <div className="absolute -z-10 -inset-4 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -105,9 +115,9 @@ const PROJECTS = [
     label: "GESTURE CONTROL",
     image: "/assets/drawing app.png",
     tags: ["MediaPipe", "React", "Canvas"],
-    description: "A high performance air drawing tool that tracks hand gestures in real time—because sometimes a mouse is just too awake.",
-    problem: "Traditional digital drawing tools require physical contact, limiting creative freedom in 3D spaces.",
-    solution: "AI-powered gesture recognition allows users to draw mid-air with zero latency.",
+    description: "A high-performance air drawing tool that tracks hand gestures in real-time, allowing for a completely touchless creative experience.",
+    problem: "Digital artists are often tethered to tablets and mice, restricting natural 3D expression.",
+    solution: "AI-powered gesture recognition enables mid-air sketching with near-zero latency.",
     link: "https://air-writing-app-wine.vercel.app"
   },
   {
@@ -117,9 +127,9 @@ const PROJECTS = [
     label: "AI ASSISTANT",
     image: "/assets/legal app.png",
     tags: ["Next.js", "OpenAI", "Tailwind"],
-    description: "An AI powered legal assistant that answers questions and analyzes documents so you spend less time reading legalese and more time shipping.",
-    problem: "Reviewing legal documents is time-consuming and prone to human error.",
-    solution: "LLM-integrated analysis provides instant summaries and risk assessment for complex contracts.",
+    description: "An intelligent legal research companion that analyzes complex documentation and provides structured summaries in seconds.",
+    problem: "Manually auditing legal contracts consumes hundreds of hours and increases compliance risks.",
+    solution: "A custom LLM workflow that instantly flags risky clauses and generates plain-language summaries.",
     link: "https://legal-care-kappa.vercel.app/home"
   },
   {
@@ -129,9 +139,9 @@ const PROJECTS = [
     label: "WEB3 / DEFI",
     image: "/assets/token app.png",
     tags: ["Solidity", "React", "Ethers.js"],
-    description: "A secure, intuitive dashboard for managing tokens and DeFi activity—built for people who actually use their apps, not just screenshots.",
-    problem: "Managing crypto assets across multiple protocols is fragmented and technically overwhelming.",
-    solution: "A unified, secure dashboard that simplifies multi-chain token management for everyday users.",
+    description: "A secure, institutional-grade dashboard for cross-chain token management and decentralized finance operations.",
+    problem: "Web3 asset management is fragmented across protocols, making tracking and security difficult.",
+    solution: "A unified portal that aggregates multi-chain data into a single, high-security dashboard.",
     link: "https://tricult-project.vercel.app"
   },
   {
@@ -141,69 +151,70 @@ const PROJECTS = [
     label: "COMPUTER VISION",
     image: "/assets/face sorter.png",
     tags: ["Python", "FaceRec", "Cloud"],
-    description: "An automated photo organizer that groups faces so you can find that party pic without digging through 300 thumbnails.",
-    problem: "Searching through thousands of event photos for specific people is an exhaustive manual task.",
-    solution: "AI-powered biometric sorting instantly indexes event galleries by face for rapid retrieval.",
+    description: "Automated biometric photo organization that instantly categorizes massive event galleries into searchable person-specific folders.",
+    problem: "Finding specific photos in event galleries with thousands of images is a manual nightmare.",
+    solution: "High-speed computer vision indexes faces instantly for immediate, personalized retrieval.",
     link: "https://face-finder-lilac.vercel.app"
   }
 ];
 
 export default function Works() {
   return (
-    <div className="min-h-screen bg-bg text-text-primary selection:bg-accent-light selection:text-accent overflow-x-hidden">
-      <main className="min-h-screen pt-16 md:pt-0">
+    <div className="min-h-screen bg-white text-[#0F172A] selection:bg-accent/10 selection:text-accent overflow-x-hidden">
+      <main className="min-h-screen">
 
         {/* ── Header ── */}
-        <section className="min-h-[50vh] md:min-h-[60vh] pt-32 md:pt-48 pb-24 flex flex-col items-center justify-center px-4 sm:px-8 md:px-12 border-b border-border bg-[#FFFFFF] relative overflow-hidden">
-          <div className="w-full text-center z-10">
+        <section className="min-h-[50vh] pt-32 pb-24 flex flex-col items-center justify-center px-6 border-b border-border/40 bg-white">
+          <div className="w-full max-w-7xl mx-auto text-center z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="flex flex-col items-center"
             >
-              <h1 className="text-[clamp(3.5rem,12vw,10rem)] font-bold leading-tight tracking-tight mb-6 sm:mb-8 text-text-primary">
-                Works<span className="text-accent animate-[blink_1s_steps(2,start)_infinite]">.</span>
+              <span className="text-accent font-bold text-xs tracking-[0.4em] uppercase mb-6">Selected Projects</span>
+              <h1 className="text-[clamp(3.5rem,12vw,9rem)] font-bold leading-[0.9] tracking-tighter mb-8 text-[#0F172A]">
+                The Works<span className="text-accent animate-pulse">.</span>
               </h1>
-              <p className="text-sm sm:text-lg md:text-xl max-w-3xl mx-auto font-medium text-text-secondary px-4 leading-relaxed">
-                A selection of products and experiments where high performance meets uncompromising design.
+              <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto font-medium text-[#64748B] leading-relaxed">
+                A showcase of digital products where technical engineering meets uncompromising aesthetic precision.
               </p>
             </motion.div>
           </div>
         </section>
 
         {/* ── Projects List ── */}
-        <section className="w-full">
+        <section className="w-full flex flex-col">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-32 sm:py-48 px-4 sm:px-6 md:px-12 text-center relative bg-[#F1F5F9] border-t border-border">
-          <div className="max-w-4xl mx-auto flex flex-col items-center gap-10">
+        <section className="py-32 sm:py-48 px-6 text-center bg-[#F1F5F9] relative border-t border-border/20">
+          <div className="max-w-4xl mx-auto flex flex-col items-center gap-12">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="flex flex-col gap-6"
             >
-              <h3 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-text-primary leading-[1.1]">
-                Ready to build something <span className="text-accent">exceptional?</span>
+              <h3 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-[#0F172A] leading-[1.1]">
+                Have a project <span className="text-accent">in mind?</span>
               </h3>
-              <p className="text-lg sm:text-xl text-text-secondary font-medium max-w-2xl mx-auto">
-                We're currently taking on new projects. Let's talk about how we can help you ship your next big idea.
+              <p className="text-xl text-[#64748B] font-medium max-w-2xl mx-auto leading-relaxed">
+                We design and build bespoke digital experiences for forward-thinking brands. Let's make it real.
               </p>
             </motion.div>
             
             <Link 
               href="/#contact" 
-              className="group relative inline-flex items-center justify-center bg-accent text-surface px-10 py-6 rounded-[16px] font-bold text-xl sm:text-2xl tracking-tight shadow-2xl hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all active:scale-[0.98] overflow-hidden"
+              className="group relative inline-flex items-center justify-center bg-[#16A34A] text-white px-10 py-6 rounded-xl font-bold text-xl sm:text-2xl tracking-tight shadow-[0_20px_50px_rgba(22,163,74,0.3)] hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               <span className="relative z-10 flex items-center">
                 Start a conversation
-                <span className="material-symbols-outlined ml-3 text-2xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                <span className="material-symbols-outlined ml-4 text-2xl group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
               </span>
-              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </Link>
           </div>
         </section>
