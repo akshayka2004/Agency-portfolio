@@ -4,29 +4,56 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-surface border-t border-border text-text-primary">
+    <footer className="w-full py-24 sm:py-32 px-6 bg-[#FFFFFF] border-t border-border/40 text-[#0F172A]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 sm:gap-12 mb-12 sm:mb-16 md:mb-24">
-          <div className="text-[clamp(3rem,12vw,8rem)] font-bold tracking-tighter leading-none">
-            T-MINUS <span className="font-[family-name:var(--font-jetbrains-mono)] [font-variant-numeric:slashed-zero] text-[1.2em] inline-block translate-y-[0.05em]">0</span>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 mb-24">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-6 flex flex-col gap-8">
+            <div className="text-[clamp(3rem,8vw,6rem)] font-bold tracking-tighter leading-none">
+              T-Minus <span className="text-accent">0</span>
+            </div>
+            <p className="text-xl text-[#64748B] font-medium max-w-sm leading-relaxed">
+              We design and build bespoke digital experiences for forward-thinking brands who want to ship fast and stay relevant.
+            </p>
           </div>
-          <div className="flex flex-col gap-4 w-full md:w-auto">
-            <span className="font-semibold uppercase tracking-[0.4em] text-xs text-text-secondary">SOCIALS //</span>
-            <div className="flex flex-wrap gap-4 sm:gap-8 text-lg sm:text-xl md:text-2xl font-medium text-text-secondary">
-              <a className="hover:text-accent hover:translate-x-1 transition-all" href="#">Insta</a>
-              <a className="hover:text-accent hover:translate-x-1 transition-all" href="#">X / TW</a>
-              <a className="hover:text-accent hover:translate-x-1 transition-all" href="#">LinkedIn</a>
+
+          {/* Nav Column */}
+          <div className="md:col-span-3 flex flex-col gap-8">
+            <span className="font-bold text-[10px] uppercase tracking-[0.4em] text-accent">Navigation</span>
+            <div className="flex flex-col gap-4 text-lg font-bold text-[#0F172A]">
+              <Link className="hover:text-accent transition-colors" href="/">Home</Link>
+              <Link className="hover:text-accent transition-colors" href="/works">Works</Link>
+              <Link className="hover:text-accent transition-colors" href="/#services">Services</Link>
+              <Link className="hover:text-accent transition-colors" href="/#contact">Contact</Link>
+            </div>
+          </div>
+
+          {/* Social Column */}
+          <div className="md:col-span-3 flex flex-col gap-8">
+            <span className="font-bold text-[10px] uppercase tracking-[0.4em] text-accent">Socials</span>
+            <div className="flex flex-col gap-4 text-lg font-bold text-[#0F172A]">
+              <a className="hover:text-accent transition-colors" href="https://twitter.com">Twitter / X</a>
+              <a className="hover:text-accent transition-colors" href="https://linkedin.com">LinkedIn</a>
+              <a className="hover:text-accent transition-colors" href="https://instagram.com">Instagram</a>
+              <a className="hover:text-accent transition-colors" href="https://github.com">GitHub</a>
             </div>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end border-t border-border pt-6 sm:pt-8 gap-6 sm:gap-4">
-          <div className="font-medium text-text-secondary text-xs">
-            © 2026 T-MINUS <span className="font-[family-name:var(--font-jetbrains-mono)] [font-variant-numeric:slashed-zero]">0</span>. <br />
-            All rights reserved. <br />
-            Designed for the late night.
+
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-t border-border/40 pt-12 gap-8">
+          <div className="flex flex-col gap-2">
+            <div className="font-bold text-xs tracking-widest text-[#64748B] uppercase">
+              © 2026 T-Minus 0 Studio. All rights reserved.
+            </div>
+            <p className="text-sm text-[#64748B] font-medium">Built for the high-performance digital era.</p>
           </div>
-          <div>
-            <span className="font-bold text-xl sm:text-2xl md:text-3xl text-accent">Start a late night project.</span>
+          
+          <div className="flex flex-col items-start md:items-end gap-4">
+            <span className="font-bold text-2xl text-[#0F172A]">Have a vision?</span>
+            <Link href="/#contact" className="text-accent font-bold text-xl hover:translate-x-2 transition-transform flex items-center gap-2">
+              Let&apos;s make it happen <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
           </div>
         </div>
       </div>
