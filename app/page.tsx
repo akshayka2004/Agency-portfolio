@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Waves } from "@/components/ui/wave-background";
+import { MeshGradient } from "@/components/ui/mesh-gradient";
 import { ProcessScroller } from "@/components/ProcessScroller";
 import { motion } from "framer-motion";
 
@@ -48,12 +48,10 @@ export default function Home() {
     <div className="min-h-screen bg-white text-[#0F172A] selection:bg-accent/10 selection:text-accent overflow-x-hidden">
       <main className="pt-16 md:pt-0">
 
-        {/* ── 1. HERO: Urgency & Outcome ── */}
-        <section id="hero" className="min-h-[95svh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-[linear-gradient(to_bottom,#F8FAFC,#FFFFFF)]">
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            <Waves className="h-full w-full opacity-[0.1]" strokeColor="#16A34A" backgroundColor="transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
-          </div>
+        {/* ── 1. HERO: Urgency & Outcome with Improved Mesh ── */}
+        <section id="hero" className="min-h-[100svh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-white">
+          {/* Layered Mesh Background */}
+          <MeshGradient />
 
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -61,7 +59,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative z-10 w-full flex flex-col items-center gap-10 max-w-6xl"
           >
-            <div className="flex items-center gap-3 bg-accent-light text-accent px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] shadow-sm border border-accent/10">
+            <div className="flex items-center gap-3 bg-white text-accent px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] shadow-lg shadow-accent/5 border border-accent/10">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               Limited Capacity // 1 Slot Remaining for Q3
             </div>
