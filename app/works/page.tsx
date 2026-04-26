@@ -20,34 +20,35 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-7xl mx-auto py-24 sm:py-32 px-6 sm:px-10 md:px-16"
+        className="max-w-7xl mx-auto py-20 sm:py-24 md:py-28 px-6 sm:px-10 md:px-16"
       >
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center ${isEven ? "" : "lg:flex-row-reverse"}`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center ${isEven ? "" : "lg:flex-row-reverse"}`}>
           
           {/* Info Column */}
           <div className={`flex flex-col gap-8 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-4">
-                <span className="text-accent font-bold text-xs tracking-[0.3em] uppercase">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <span className="text-accent font-bold text-[10px] tracking-[0.4em] uppercase">
                   Project {String(index + 1).padStart(2, '0')}
                 </span>
-                <span className="text-text-secondary text-xs font-bold tracking-widest">{project.year}</span>
+                <div className="h-px w-6 bg-accent/20"></div>
+                <span className="text-text-secondary text-[10px] font-bold tracking-widest">{project.year}</span>
               </div>
               
-              <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-bold tracking-tight text-[#0F172A] leading-[1.05]">
+              <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold tracking-tight text-[#0F172A] leading-[1.1]">
                 {project.title}
               </h2>
               
-              <p className="text-[#64748B] text-lg sm:text-xl font-medium leading-relaxed max-w-xl">
+              <p className="text-[#64748B] text-base sm:text-lg font-medium leading-relaxed max-w-xl">
                 {project.description}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2">
               {project.tags.map((tag: string) => (
                 <span 
                   key={tag} 
-                  className="bg-[#DCFCE7] text-[#166534] px-3 py-1.5 rounded-full text-xs font-bold tracking-wide"
+                  className="bg-[#DCFCE7] text-[#166534] px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
                 >
                   {tag}
                 </span>
@@ -55,26 +56,32 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             </div>
 
             {/* Micro Storytelling */}
-            <div className="flex flex-col gap-5 py-6 px-8 bg-white/50 rounded-2xl border border-border/30 backdrop-blur-sm">
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent/70">The Problem</span>
-                <p className="text-sm text-[#0F172A] font-bold leading-relaxed">{project.problem}</p>
+            <div className="flex flex-col gap-6 py-8 px-8 bg-white/40 rounded-2xl border border-border/20 backdrop-blur-sm shadow-sm">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">The Problem</span>
+                </div>
+                <p className="text-sm text-[#64748B] font-medium leading-relaxed pl-3.5">{project.problem}</p>
               </div>
-              <div className="flex flex-col gap-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent/70">The Solution</span>
-                <p className="text-sm text-[#0F172A] font-bold leading-relaxed">{project.solution}</p>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0F172A]">The Solution</span>
+                </div>
+                <p className="text-sm text-[#64748B] font-medium leading-relaxed pl-3.5">{project.solution}</p>
               </div>
             </div>
 
-            <div className="pt-4">
+            <div className="pt-2">
               <a 
                 href={project.link} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center justify-center bg-[#16A34A] text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest shadow-xl hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
+                className="inline-flex items-center justify-center bg-[#16A34A] text-white px-6 py-[14px] rounded-xl font-bold text-xs uppercase tracking-[0.15em] shadow-lg shadow-accent/20 hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
               >
                 View Project
-                <span className="material-symbols-outlined ml-2.5 text-lg">arrow_outward</span>
+                <span className="material-symbols-outlined ml-2.5 text-base">arrow_outward</span>
               </a>
             </div>
           </div>
@@ -82,24 +89,23 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           {/* Visual Column */}
           <div className={`relative ${isEven ? "lg:order-2" : "lg:order-1"}`}>
             <motion.div 
-              whileHover={{ scale: 1.02, translateY: -8 }}
-              transition={{ duration: 0.4 }}
-              className="relative rounded-[20px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-border/40 aspect-[4/3] group/img bg-[#F1F5F9]"
+              whileHover={{ translateY: -10 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="relative rounded-[24px] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.1)] border border-border/50 aspect-[4/3] group/img bg-bg"
             >
               <img
                 className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover/img:scale-110"
                 src={project.image}
                 alt={project.title}
                 onError={(e) => {
-                  // Fallback for missing images
-                  (e.target as HTMLImageElement).src = `https://placehold.co/800x600/f1f5f9/16a34a?text=${project.title.replace(' ', '+')}`;
+                  (e.target as HTMLImageElement).src = `https://placehold.co/800x600/f8fafc/16a34a?text=${project.title.replace(' ', '+')}`;
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-500"></div>
             </motion.div>
             
             {/* Soft decorative glow */}
-            <div className="absolute -z-10 -inset-4 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div className="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-accent/5 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
           </div>
         </div>
       </motion.div>
@@ -164,7 +170,7 @@ export default function Works() {
       <main className="min-h-screen">
 
         {/* ── Header ── */}
-        <section className="min-h-[50vh] pt-32 pb-24 flex flex-col items-center justify-center px-6 border-b border-border/40 bg-white">
+        <section className="min-h-[50vh] pt-32 pb-24 flex flex-col items-center justify-center px-6 bg-white">
           <div className="w-full max-w-7xl mx-auto text-center z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -172,12 +178,14 @@ export default function Works() {
               transition={{ duration: 0.8 }}
               className="flex flex-col items-center"
             >
-              <span className="text-accent font-bold text-xs tracking-[0.4em] uppercase mb-6">Selected Projects</span>
-              <h1 className="text-[clamp(3.5rem,12vw,9rem)] font-bold leading-[0.9] tracking-tighter mb-8 text-[#0F172A]">
-                The Works<span className="text-accent animate-pulse">.</span>
+              <div className="bg-accent-light text-accent font-bold text-[10px] tracking-[0.4em] uppercase mb-8 px-4 py-1.5 rounded-full">
+                Portfolio // 2026
+              </div>
+              <h1 className="text-[clamp(3.5rem,12vw,8rem)] font-bold leading-[0.9] tracking-tighter mb-10 text-[#0F172A]">
+                The Projects<span className="text-accent">.</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto font-medium text-[#64748B] leading-relaxed">
-                A showcase of digital products where technical engineering meets uncompromising aesthetic precision.
+              <p className="text-lg sm:text-xl max-w-2xl mx-auto font-medium text-[#64748B] leading-relaxed">
+                A selection of digital products and engineering experiments focused on speed, utility, and refined aesthetics.
               </p>
             </motion.div>
           </div>
@@ -191,30 +199,28 @@ export default function Works() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-32 sm:py-48 px-6 text-center bg-[#F1F5F9] relative border-t border-border/20">
-          <div className="max-w-4xl mx-auto flex flex-col items-center gap-12">
+        <section className="py-24 sm:py-32 md:py-48 px-6 text-center bg-[#F1F5F9] relative border-t border-border/10">
+          <div className="max-w-4xl mx-auto flex flex-col items-center gap-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-4"
             >
-              <h3 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-[#0F172A] leading-[1.1]">
-                Have a project <span className="text-accent">in mind?</span>
+              <h3 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tight text-[#0F172A] leading-[1.1]">
+                Ready to start your <span className="text-accent">next project?</span>
               </h3>
-              <p className="text-xl text-[#64748B] font-medium max-w-2xl mx-auto leading-relaxed">
-                We design and build bespoke digital experiences for forward-thinking brands. Let's make it real.
+              <p className="text-lg text-[#64748B] font-medium max-w-2xl mx-auto leading-relaxed">
+                We're currently available for new collaborations. Let's build something exceptional together.
               </p>
             </motion.div>
             
             <Link 
               href="/#contact" 
-              className="group relative inline-flex items-center justify-center bg-[#16A34A] text-white px-10 py-6 rounded-xl font-bold text-xl sm:text-2xl tracking-tight shadow-[0_20px_50px_rgba(22,163,74,0.3)] hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              className="group relative inline-flex items-center justify-center bg-[#16A34A] text-white px-8 py-[14px] rounded-xl font-bold text-lg sm:text-xl tracking-tight shadow-[0_20px_40px_rgba(22,163,74,0.25)] hover:bg-accent-hover hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300"
             >
-              <span className="relative z-10 flex items-center">
-                Start a conversation
-                <span className="material-symbols-outlined ml-4 text-2xl group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
-              </span>
+              Start a conversation
+              <span className="material-symbols-outlined ml-3 text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </Link>
           </div>
         </section>
