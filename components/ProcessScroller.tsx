@@ -14,14 +14,12 @@ const ROD_Y   = PAD_T + TAG_H / 2 - ROD_H / 2; // absolute top of rod in scrolle
 const ROD_G   = "linear-gradient(to bottom,#E2E8F0 0%,#F8FAFC 25%,#FFFFFF 50%,#F8FAFC 75%,#E2E8F0 100%)";
 
 const SERVICES = [
-  { code:"WEB", date:"06-20-12", name:"Web Design",        accent:"#16A34A", bg:"#FFFFFF", top:["UI/UX","Prototypes","Components","Design Systems"], bottom:["Figma","Wireframes","Interactions","User Journeys"], from:"WIR", to:"PRO" },
-  { code:"DEV", date:"02-20-03", name:"Web Dev",           accent:"#16A34A", bg:"#FFFFFF", top:["CSS/HTML/JS","GSAP","Next.js","Git"],              bottom:["Wordpress","Bricks","Agentic AI","Cursor"],         from:"FRO", to:"BCK" },
-  { code:"STR", date:"08-20-15", name:"Brand Strategy",    accent:"#64748B", bg:"#FFFFFF", top:["Interviews","Reports","Personality","Value Prop"],  bottom:["Workshops","Naming","Values","Positioning"],        from:"B2B", to:"B2C" },
-  { code:"BRD", date:"12-20-04", name:"Brand Design",      accent:"#16A34A", bg:"#FFFFFF", top:["Guidelines","Activation","Logos","Design Systems"], bottom:["Concepts","Templates","Moodboards","Assets"],       from:"CPT", to:"ACT" },
-  { code:"GFK", date:"06-20-02", name:"Graphic Design",    accent:"#0EA5E9", bg:"#FFFFFF", top:["Artwork","Logos","Book Design","Leaflets"],         bottom:["Print","Environmental","Reports","Posters"],         from:"DES", to:"ART" },
-  { code:"MOT", date:"06-20-03", name:"Motion Design",     accent:"#F59E0B", bg:"#FFFFFF", top:["Interactions","Premiere","Animations","Lottie"],   bottom:["After Effects","Rive","Motion.Page","Ai Video"],    from:"WEB", to:"VID" },
-  { code:"ILL", date:"09-20-02", name:"Illustration",      accent:"#8B5CF6", bg:"#FFFFFF", top:["2D","Illustrator","Graphic"],                      bottom:["Photoshop","Vector","AI Comps","Animated"],         from:"STA", to:"ANI" },
-  { code:"CRD", date:"04-20-07", name:"Creative Direction",accent:"#16A34A", bg:"#FFFFFF", top:["Planning","Art Direction","Leadership"],            bottom:["Campaigns","Pitches","Budgeting","Presentations"],  from:"PCH", to:"DIR" },
+  { code:"ERP", date:"01-20-26", name:"AI ERP Systems",      accent:"#16A34A", bg:"#FFFFFF", top:["Cloud Sync","AI Insights","Automation","Scalable"], bottom:["Enterprise","Custom","Reporting","Security"], from:"LEG", to:"AI" },
+  { code:"WEB", date:"06-20-12", name:"Web Design",        accent:"#2563EB", bg:"#FFFFFF", top:["UI/UX","Prototypes","Components","Design Systems"], bottom:["Figma","Wireframes","Interactions","User Journeys"], from:"WIR", to:"PRO" },
+  { code:"DEV", date:"02-20-03", name:"Web Dev",           accent:"#7C3AED", bg:"#FFFFFF", top:["Next.js","Tailwind","TypeScript","Vercel"], bottom:["Performance","SEO","API Ready","Clean Code"], from:"FRO", to:"BCK" },
+  { code:"SAS", date:"03-20-25", name:"SaaS Services",     accent:"#0891B2", bg:"#FFFFFF", top:["Multi-tenant","Sub-billing","Auth","Dashboards"], bottom:["Scalable","Global","API First","Secure"], from:"IDL", to:"MRK" },
+  { code:"AUT", date:"11-20-25", name:"AI Automation",      accent:"#4F46E5", bg:"#FFFFFF", top:["Workflows","LLM Ops","RPA","Agents"], bottom:["Efficient","Fast","Reliable","Smart"], from:"MAN", to:"AUT" },
+  { code:"APP", date:"04-20-26", name:"App Development",   accent:"#DB2777", bg:"#FFFFFF", top:["iOS/Android","Native","Cross-platform","UI"], bottom:["Mobile","Fast","Modern","Store-ready"], from:"IDE", to:"APP" },
 ];
 
 /*

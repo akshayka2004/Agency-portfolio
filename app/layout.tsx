@@ -1,11 +1,12 @@
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, MuseoModerno } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -14,18 +15,23 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const museoModerno = MuseoModerno({
+  variable: "--font-museo-moderno",
+  subsets: ["latin"],
+});
+
 export const metadata = {
-  title: "Akshay.Dev | SaaS Builder & DevOps Engineer",
-  description: "Architecting scalable SaaS platforms and high-performance systems. Expert in Next.js, Node.js, and Cloud Infrastructure.",
+  title: "T-0 | START A RIOT",
+  description: "Brutalist design and high-performance engineering. No templates. No compromises.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${museoModerno.variable} scroll-smooth`}>
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
-      <body className="antialiased" suppressHydrationWarning>
+      <body className="antialiased selection:bg-[#39FF14] selection:text-black" suppressHydrationWarning>
         <ScrollProgressBar />
         <Navbar />
         {children}
