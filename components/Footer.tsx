@@ -29,14 +29,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Social Column */}
+          {/* Connect Column */}
           <div className="md:col-span-3 flex flex-col gap-8">
-            <span className="font-bold text-[10px] uppercase tracking-[0.4em] text-accent">Socials</span>
+            <span className="font-bold text-[10px] uppercase tracking-[0.4em] text-accent">Connect</span>
             <div className="flex flex-col gap-4 text-lg font-bold text-[#0F172A]">
-              <a className="hover:text-accent transition-colors" href="https://twitter.com">Twitter / X</a>
-              <a className="hover:text-accent transition-colors" href="https://linkedin.com">LinkedIn</a>
-              <a className="hover:text-accent transition-colors" href="https://instagram.com">Instagram</a>
-              <a className="hover:text-accent transition-colors" href="https://github.com">GitHub</a>
+              <a className="hover:text-accent transition-colors" href="mailto:t.0youthingwebuild@gmail.com">Email</a>
+              <a className="hover:text-accent transition-colors" href="tel:7909191060">Kevin Mathew</a>
+              <a className="hover:text-accent transition-colors" href="tel:6235713616">Akshay K A</a>
+              <div className="pt-4 flex gap-4">
+                <a className="text-sm hover:text-accent transition-colors" href="https://twitter.com">TW</a>
+                <a className="text-sm hover:text-accent transition-colors" href="https://linkedin.com">LI</a>
+                <a className="text-sm hover:text-accent transition-colors" href="https://instagram.com">IG</a>
+                <a className="text-sm hover:text-accent transition-colors" href="https://github.com">GH</a>
+              </div>
             </div>
           </div>
         </div>

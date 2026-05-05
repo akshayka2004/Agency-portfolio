@@ -234,9 +234,19 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-4">
-                <a href="mailto:hello@t0.agency" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors">hello@t0.agency</a>
-                <Link href="https://calendly.com" className="font-bold text-[#0F172A] hover:text-accent transition-colors flex items-center gap-2">
+              <div className="flex flex-col gap-6">
+                <a href="mailto:t.0youthingwebuild@gmail.com" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors">t.0youthingwebuild@gmail.com</a>
+                <div className="flex flex-col gap-3">
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold text-[#64748B] uppercase tracking-widest">Kevin Mathew</span>
+                    <a href="tel:7909191060" className="text-lg font-bold text-[#0F172A] hover:text-accent transition-colors">+91 79091 91060</a>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold text-[#64748B] uppercase tracking-widest">Akshay K A</span>
+                    <a href="tel:6235713616" className="text-lg font-bold text-[#0F172A] hover:text-accent transition-colors">+91 62357 13616</a>
+                  </div>
+                </div>
+                <Link href="https://calendly.com" className="font-bold text-[#0F172A] hover:text-accent transition-colors flex items-center gap-2 mt-2">
                   Book Strategy Call →
                 </Link>
               </div>
