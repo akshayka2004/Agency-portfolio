@@ -20,9 +20,24 @@ const museoModerno = MuseoModerno({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "T-0 | START A RIOT",
-  description: "Brutalist design and high-performance engineering. No templates. No compromises.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "T-0 Engineering | Applied Technology Partner",
+  description: "T-0 is an engineering and innovation partner specializing in enterprise software, artificial intelligence, and hardware research.",
+  openGraph: {
+    title: "T-0 Engineering",
+    description: "Applied Technology Partner specializing in enterprise software, AI, and hardware R&D.",
+    url: "https://t-0.engineering",
+    siteName: "T-0 Engineering",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "T-0 Engineering",
+    description: "Applied Technology Partner for complex enterprise environments.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -4,30 +4,24 @@ import { EnterpriseGrid } from "@/components/ui/EnterpriseGrid";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const researchAreas = [
+const researchCapabilities = [
   {
-    title: "Project Zero: Autonomous Edge AI",
-    category: "Edge Computing & AI",
-    status: "Active Research",
-    desc: "Experimenting with multi-agent reinforcement learning deployed directly on edge TPU hardware for zero-latency industrial automation.",
-    tags: ["TensorFlow Lite", "C++", "Embedded Linux", "Neural Networks"],
-    image: "SYSTEM_RENDER_EDGE.WEBP"
+    title: "Applied Artificial Intelligence",
+    category: "AI & ML",
+    desc: "Experimentation with localized Large Language Models (LLMs), Computer Vision pipelines (OpenCV, MediaPipe), and Retrieval-Augmented Generation (RAG) for secure, private enterprise deployments.",
+    tags: ["LLM", "Computer Vision", "TensorFlow", "PyTorch"]
   },
   {
-    title: "Quantum-Resistant Cryptography in IoT",
-    category: "Security & Hardware",
-    status: "Prototyping",
-    desc: "Developing custom PCB architectures that implement lattice-based cryptographic algorithms for secure smart-city sensors.",
-    tags: ["PCB Design", "Rust", "Lattice Crypto", "IoT"],
-    image: "SYSTEM_RENDER_CRYPTO.WEBP"
+    title: "Embedded Systems & IoT",
+    category: "Hardware",
+    desc: "Prototyping edge devices and sensor networks. We research the feasibility of integrating microcontrollers with high-throughput cloud pipelines for industrial automation.",
+    tags: ["PCB Prototyping", "Microcontrollers", "Edge Computing", "C++"]
   },
   {
-    title: "Generative Architecture Topologies",
-    category: "Cloud Infrastructure",
-    status: "Published Paper",
-    desc: "An internal study on using LLMs to automatically generate, provision, and secure AWS infrastructure stacks based on natural language constraints.",
-    tags: ["Terraform", "AWS", "LLM", "DevOps"],
-    image: "SYSTEM_RENDER_CLOUD.WEBP"
+    title: "Resilient Cloud Architectures",
+    category: "Infrastructure",
+    desc: "Internal auditing of modern deployment strategies including serverless environments, containerization (Docker/Kubernetes), and automated infrastructure provisioning.",
+    tags: ["AWS", "Docker", "Terraform", "DevOps"]
   }
 ];
 
@@ -37,59 +31,54 @@ export default function ResearchPage() {
       <EnterpriseGrid />
       
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <div className="flex flex-col gap-6 mb-20 max-w-2xl">
+        <div className="flex flex-col gap-6 mb-20 max-w-3xl">
           <Link href="/" className="text-xs font-mono text-text-secondary hover:text-white transition-colors flex items-center gap-2 mb-4">
             <span className="material-symbols-outlined text-sm">west</span> Back to Hub
           </Link>
           <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">Innovation Lab</span>
           <h1 className="text-[clamp(3rem,6vw,5rem)] font-bold tracking-tighter text-white leading-[1.1]">
-            Research & <br /> Development.
+            Research Capabilities.
           </h1>
           <p className="text-lg text-text-secondary leading-relaxed">
-            A public ledger of our internal experiments, hardware prototypes, AI explorations, and technical papers. We believe transparency in research drives industry-wide innovation.
+            We maintain an internal R&D mandate to continuously evaluate emerging technologies. We do not publish proprietary client data; instead, this ledger outlines the technical domains we actively investigate to ensure we deploy the most rigorous architectures for our enterprise partners.
           </p>
         </div>
 
-        <div className="flex flex-col gap-12">
-          {researchAreas.map((area, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {researchCapabilities.map((area, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="border border-border/40 bg-surface/30 hover:bg-surface/50 transition-colors p-8 md:p-12"
+              className="border border-border/40 bg-surface/30 hover:bg-surface/50 transition-colors p-8 flex flex-col gap-6"
             >
-              <div className="flex flex-col lg:flex-row gap-12">
-                <div className="lg:w-1/2 flex flex-col gap-6">
-                  <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-mono border border-border px-2 py-1 uppercase text-text-secondary">{area.category}</span>
-                    <span className="text-[10px] font-mono text-accent uppercase flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                      {area.status}
-                    </span>
-                  </div>
-                  
-                  <h2 className="text-3xl font-bold text-white tracking-tight">{area.title}</h2>
-                  <p className="text-text-secondary leading-relaxed">{area.desc}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mt-auto pt-6">
-                    {area.tags.map(tag => (
-                      <span key={tag} className="text-xs font-mono text-text-secondary bg-surface px-2 py-1">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="lg:w-1/2 aspect-[4/3] bg-surface-hover border border-border/20 flex items-center justify-center relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-grid opacity-20" />
-                  <span className="font-mono text-text-secondary text-sm group-hover:scale-105 transition-transform">
-                    {area.image}
+              <div className="flex items-center gap-4">
+                <span className="text-[10px] font-mono border border-border px-2 py-1 uppercase text-text-secondary">{area.category}</span>
+              </div>
+              
+              <h2 className="text-2xl font-bold text-white tracking-tight">{area.title}</h2>
+              <p className="text-sm text-text-secondary leading-relaxed flex-grow">{area.desc}</p>
+              
+              <div className="flex flex-wrap gap-2 pt-6 border-t border-border/20">
+                {area.tags.map(tag => (
+                  <span key={tag} className="text-[10px] font-mono text-text-secondary bg-surface px-2 py-1 uppercase">
+                    {tag}
                   </span>
-                </div>
+                ))}
               </div>
             </motion.div>
           ))}
+        </div>
+        
+        <div className="mt-24 p-8 sm:p-12 border border-border/40 bg-surface/20 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex flex-col gap-2 max-w-xl">
+                <h3 className="text-xl font-bold text-white">Require a custom technical feasibility study?</h3>
+                <p className="text-sm text-text-secondary">We partner with organizations to research and validate complex engineering ideas before production.</p>
+            </div>
+            <Link href="mailto:t.0youthingwebuild@gmail.com" className="shrink-0 bg-white text-bg px-8 py-4 font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all">
+              Request Consultation
+            </Link>
         </div>
       </div>
     </div>
