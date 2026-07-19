@@ -1,6 +1,5 @@
 "use client";
 
-import { EnterpriseGrid } from "@/components/ui/EnterpriseGrid";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -27,19 +26,17 @@ const researchCapabilities = [
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen bg-bg text-text-primary pt-32 pb-20 selection:bg-accent/20 selection:text-accent">
-      <EnterpriseGrid />
-      
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <div className="flex flex-col gap-6 mb-20 max-w-3xl">
-          <Link href="/" className="text-xs font-mono text-text-secondary hover:text-white transition-colors flex items-center gap-2 mb-4">
+    <div className="min-h-screen bg-bg text-text-primary pt-32 pb-20 selection:bg-accent/10 selection:text-accent">
+      <div className="max-w-[1200px] mx-auto px-6">
+        
+        <div className="flex flex-col gap-6 mb-24 max-w-3xl">
+          <Link href="/" className="text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2 mb-4 w-fit">
             <span className="material-symbols-outlined text-sm">west</span> Back to Hub
           </Link>
-          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">Innovation Lab</span>
-          <h1 className="text-[clamp(3rem,6vw,5rem)] font-bold tracking-tighter text-white leading-[1.1]">
+          <h1 className="text-[clamp(3rem,6vw,5rem)] font-bold tracking-tight text-text-primary leading-none">
             Research Capabilities.
           </h1>
-          <p className="text-lg text-text-secondary leading-relaxed">
+          <p className="text-xl text-text-secondary leading-relaxed">
             We maintain an internal R&D mandate to continuously evaluate emerging technologies. We do not publish proprietary client data; instead, this ledger outlines the technical domains we actively investigate to ensure we deploy the most rigorous architectures for our enterprise partners.
           </p>
         </div>
@@ -51,18 +48,18 @@ export default function ResearchPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="border border-border/40 bg-surface/30 hover:bg-surface/50 transition-colors p-8 flex flex-col gap-6"
+              className="bg-surface rounded-2xl border border-border shadow-sm p-8 flex flex-col gap-6"
             >
               <div className="flex items-center gap-4">
-                <span className="text-[10px] font-mono border border-border px-2 py-1 uppercase text-text-secondary">{area.category}</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">{area.category}</span>
               </div>
               
-              <h2 className="text-2xl font-bold text-white tracking-tight">{area.title}</h2>
-              <p className="text-sm text-text-secondary leading-relaxed flex-grow">{area.desc}</p>
+              <h2 className="text-2xl font-bold text-text-primary tracking-tight">{area.title}</h2>
+              <p className="text-lg text-text-secondary leading-relaxed flex-grow">{area.desc}</p>
               
-              <div className="flex flex-wrap gap-2 pt-6 border-t border-border/20">
+              <div className="flex flex-wrap gap-2 pt-6 mt-auto">
                 {area.tags.map(tag => (
-                  <span key={tag} className="text-[10px] font-mono text-text-secondary bg-surface px-2 py-1 uppercase">
+                  <span key={tag} className="text-xs font-semibold text-text-secondary bg-surface-secondary px-3 py-1 rounded-full border border-border">
                     {tag}
                   </span>
                 ))}
@@ -71,15 +68,16 @@ export default function ResearchPage() {
           ))}
         </div>
         
-        <div className="mt-24 p-8 sm:p-12 border border-border/40 bg-surface/20 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex flex-col gap-2 max-w-xl">
-                <h3 className="text-xl font-bold text-white">Require a custom technical feasibility study?</h3>
-                <p className="text-sm text-text-secondary">We partner with organizations to research and validate complex engineering ideas before production.</p>
+        <div className="mt-24 p-10 bg-surface rounded-[24px] border border-border shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex flex-col gap-3 max-w-xl">
+                <h3 className="text-2xl font-bold text-text-primary">Require a custom technical feasibility study?</h3>
+                <p className="text-lg text-text-secondary leading-relaxed">We partner with organizations to research and validate complex engineering ideas before production.</p>
             </div>
-            <Link href="mailto:t.0youthingwebuild@gmail.com" className="shrink-0 bg-white text-bg px-8 py-4 font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all">
+            <Link href="mailto:contact@t-0.engineering" className="shrink-0 bg-accent text-white px-8 py-4 rounded-xl font-semibold hover:bg-accent-hover transition-colors shadow-sm">
               Request Consultation
             </Link>
         </div>
+
       </div>
     </div>
   );

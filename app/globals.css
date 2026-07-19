@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #020617; /* Deep Navy / Almost Black */
-  --surface: #0F172A; /* Graphite/Navy surface */
-  --surface-hover: #1E293B;
-  --text-primary: #F8FAFC; /* White */
-  --text-secondary: #94A3B8; /* Silver/Grey */
-  --accent: #2563EB; /* Primary Blue */
-  --accent-hover: #1D4ED8;
-  --accent-light: rgba(37, 99, 235, 0.1);
-  --border: rgba(255, 255, 255, 0.08);
-  --blueprint-grid: rgba(255, 255, 255, 0.03);
+  --bg: #FCFCFD; /* Warm White */
+  --surface: #FFFFFF; /* Card Background */
+  --surface-secondary: #F5F7FA;
+  --surface-hover: #F8FAFC;
+  --text-primary: #111827; /* Almost Black */
+  --text-secondary: #4B5563; /* Slate Body */
+  --accent: #2952E3; /* Deep Royal Blue */
+  --accent-hover: #1E40AF; /* CTA Hover */
+  --accent-light: #66A8FF; /* Soft Sky Blue */
+  --border: #E4E8EE; /* Subtle Border */
+  --success: #10B981;
 }
 
 @theme {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
   --color-surface-hover: var(--surface-hover);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
@@ -23,13 +25,8 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-light: var(--accent-light);
   --color-border: var(--border);
+  --color-success: var(--success);
   --font-sans: 'Inter', var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-}
-
-@utility bg-grid {
-  background-size: 40px 40px;
-  background-image: linear-gradient(to right, var(--blueprint-grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px);
 }
 
 body {
