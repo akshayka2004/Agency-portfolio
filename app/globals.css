@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #FCFCFD; /* Warm White */
-  --surface: #FFFFFF; /* Card Background */
-  --surface-secondary: #F5F7FA;
-  --surface-hover: #F8FAFC;
-  --text-primary: #111827; /* Almost Black */
-  --text-secondary: #4B5563; /* Slate Body */
-  --accent: #2952E3; /* Deep Royal Blue */
-  --accent-hover: #1E40AF; /* CTA Hover */
-  --accent-light: #66A8FF; /* Soft Sky Blue */
-  --border: #E4E8EE; /* Subtle Border */
-  --success: #10B981;
+  --bg: #FAFBFC; /* Background */
+  --surface: #FFFFFF; /* Surface */
+  --surface-secondary: #F3F4F6;
+  --surface-hover: #F9FAFB;
+  --text-primary: #111827; /* Heading */
+  --text-secondary: #4B5563; /* Body */
+  --accent: #2F5BEA; /* Primary Blue */
+  --accent-light: #4E7BFF; /* Secondary Blue */
+  --accent-dark: #1F2A44; /* Deep Navy */
+  --accent-teal: #14B8A6; /* Accent */
+  --border: #E5E7EB; /* Border */
+  --success: #16A34A; /* Success */
 }
 
 @theme {
@@ -22,8 +23,9 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
   --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-teal: var(--accent-teal);
   --color-border: var(--border);
   --color-success: var(--success);
   --font-sans: 'Inter', var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;

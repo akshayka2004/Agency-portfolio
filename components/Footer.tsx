@@ -44,12 +44,15 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-text-secondary">
-            &copy; {currentYear} T-0 Engineering. All rights reserved.
+          <p className="text-sm text-text-secondary font-medium">
+            Building technology with clarity, precision, and purpose.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-sm text-text-secondary hover:text-text-primary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-sm text-text-secondary hover:text-text-primary transition-colors">Terms of Service</Link>
+            <p className="text-sm text-text-secondary">
+              &copy; {currentYear} T-0 Engineering. All rights reserved.
+            </p>
+            <Link href="/privacy" className="text-sm text-text-secondary hover:text-text-primary transition-colors">Privacy</Link>
+            <Link href="/terms" className="text-sm text-text-secondary hover:text-text-primary transition-colors">Terms</Link>
           </div>
         </div>
       </div>
