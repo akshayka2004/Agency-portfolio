@@ -37,9 +37,8 @@ export default function Works() {
       <main className="max-w-[1200px] mx-auto px-6">
         
         <div className="mb-24">
-          <span className="text-xs font-semibold text-accent uppercase tracking-widest mb-4 block">Case Studies</span>
           <h1 className="text-[clamp(3.5rem,6vw,5.5rem)] font-bold tracking-tight text-text-primary leading-none mb-6">
-            Engineered Systems.
+            Selected Work.
           </h1>
           <p className="text-xl text-text-secondary max-w-2xl">
             A detailed review of architectures, prototypes, and engineering solutions we have deployed. Each study outlines our rigorous methodology from research through execution.

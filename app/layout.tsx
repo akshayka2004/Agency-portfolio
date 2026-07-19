@@ -23,20 +23,20 @@ const museoModerno = MuseoModerno({
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "T-0 Engineering | Applied Technology Partner",
-  description: "T-0 is an engineering and innovation partner specializing in enterprise software, artificial intelligence, and hardware research.",
+  title: "T-0",
+  description: "T-0 solves problems worth solving. We design, research, and build intelligent systems that last.",
   openGraph: {
-    title: "T-0 Engineering",
-    description: "Applied Technology Partner specializing in enterprise software, AI, and hardware R&D.",
-    url: "https://t-0.engineering",
-    siteName: "T-0 Engineering",
+    title: "T-0",
+    description: "T-0 solves problems worth solving. We design, research, and build intelligent systems that last.",
+    url: "https://t-0.dev",
+    siteName: "T-0",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "T-0 Engineering",
-    description: "Applied Technology Partner for complex enterprise environments.",
+    title: "T-0",
+    description: "T-0 solves problems worth solving.",
   },
 };
 

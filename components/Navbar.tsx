@@ -5,11 +5,10 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
-  { name: "Solutions", href: "/#capabilities" },
+  { name: "Work", href: "/works" },
+  { name: "Capabilities", href: "/#capabilities" },
   { name: "Research", href: "/research" },
-  { name: "Case Studies", href: "/works" },
-  { name: "Industries", href: "/#industries" },
-  { name: "Insights", href: "/#insights" },
+  { name: "Journal", href: "/#insights" },
   { name: "Company", href: "/#company" },
 ];
 
@@ -43,7 +42,7 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <span className="text-xl font-bold tracking-tight text-text-primary">
-              T-0 Engineering
+              T-0
             </span>
           </Link>
 
@@ -63,16 +62,10 @@ export default function Navbar() {
           {/* Contact / CTA */}
           <div className="hidden lg:flex items-center gap-6">
             <Link 
-              href="mailto:contact@t-0.engineering" 
+              href="/#contact" 
               className="text-sm font-medium text-text-primary hover:text-accent transition-colors"
             >
               Contact
-            </Link>
-            <Link 
-              href="/#contact" 
-              className="bg-text-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-accent transition-colors shadow-sm"
-            >
-              Book Consultation
             </Link>
           </div>
 
@@ -115,7 +108,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full text-center bg-text-primary text-white py-4 rounded-xl text-lg font-semibold hover:bg-accent transition-colors shadow-sm"
               >
-                Book Consultation
+                Contact
               </Link>
             </nav>
           </motion.div>
