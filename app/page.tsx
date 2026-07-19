@@ -1,286 +1,234 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { MeshGradient } from "@/components/ui/mesh-gradient";
-import { ProcessScroller } from "@/components/ProcessScroller";
 import { motion } from "framer-motion";
+import { EnterpriseGrid } from "@/components/ui/EnterpriseGrid";
+import { MetricBar } from "@/components/ui/MetricBar";
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-};
-
-const fadeInItem = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as any } }
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
 export default function Home() {
-  const [formStatus, setFormStatus] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus("submitting");
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData);
-
-    try {
-      const resp = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (resp.ok) setFormStatus("success");
-      else setFormStatus("error");
-    } catch (err) {
-      setFormStatus("error");
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-white text-[#0F172A] selection:bg-accent/10 selection:text-accent overflow-x-hidden">
+    <div className="min-h-screen bg-bg text-text-primary selection:bg-accent/20 selection:text-accent overflow-x-hidden pt-20">
       <main className="w-full">
-
-        {/* ── 1. HERO (Primary: 100vh) ── */}
-        <section id="hero" className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[linear-gradient(to_bottom,#F8FAFC,#FFFFFF)] py-20">
-          <MeshGradient />
-          <div className="w-full max-w-[1100px] mx-auto px-6 relative z-10 flex flex-col items-center text-center gap-10">
+        
+        {/* ── 1. HERO ── */}
+        <section className="relative min-h-[90vh] flex items-center border-b border-border/20">
+          <EnterpriseGrid />
+          <div className="w-full max-w-[1400px] mx-auto px-6 grid lg:grid-cols-2 gap-12 relative z-10">
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col items-center gap-8"
+              initial="hidden" animate="visible" variants={fadeUp}
+              className="flex flex-col gap-8 pt-10 lg:pt-0"
             >
-
+              <div className="inline-flex items-center gap-2 border border-accent/30 bg-accent/5 px-4 py-1.5 rounded-full w-fit">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="text-xs font-mono uppercase tracking-widest text-accent">Engineering Intelligence</span>
+              </div>
               
-              <h1 className="text-[clamp(3rem,10vw,7.5rem)] font-bold tracking-tighter leading-[0.95] text-[#0F172A]">
-                Turn your roadmap into <span className="text-accent italic">revenue</span> in weeks.
+              <h1 className="text-[clamp(2.5rem,5vw,5rem)] font-bold tracking-tighter leading-[1.05] text-white">
+                Building Intelligent Systems That Move Industries Forward.
               </h1>
               
-              <p className="text-lg sm:text-xl md:text-2xl font-medium max-w-2xl text-[#64748B] leading-relaxed">
-                High-velocity product engineering for founders who need to ship fast, scale deep, and win markets.
+              <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl">
+                We help organizations research, validate, prototype, engineer and deploy software, AI systems, hardware, and enterprise infrastructure.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-5 mt-4">
-                <Link href="#contact" className="group bg-[#16A34A] text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-accent-hover hover:scale-[1.03] hover:-translate-y-1 transition-all shadow-[0_20px_40px_rgba(22,163,74,0.3)] flex items-center gap-3">
-                  Start Your Build
-                  <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">bolt</span>
+              <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                <Link href="#contact" className="bg-white text-bg px-8 py-4 font-bold text-sm uppercase tracking-widest hover:bg-white/90 transition-all flex items-center justify-center gap-3">
+                  Book Strategy Session
+                  <span className="material-symbols-outlined text-lg">arrow_forward</span>
                 </Link>
-                <Link href="https://calendly.com" className="bg-white text-[#0F172A] border border-border/80 px-10 py-5 rounded-xl font-bold text-lg hover:bg-[#F8FAFC] hover:-translate-y-1 transition-all shadow-sm flex items-center gap-3">
-                  Book Strategy Call
+                <Link href="/works" className="border border-border/50 text-white px-8 py-4 font-bold text-sm uppercase tracking-widest hover:border-accent hover:text-accent transition-all flex items-center justify-center">
+                  Explore Case Studies
                 </Link>
+              </div>
+
+              <div className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-border/20">
+                {["Research-first", "Prototype to Production", "AI + Software + Hardware", "Built for Scale"].map((badge, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-accent text-sm">check_circle</span>
+                    <span className="text-xs font-mono text-text-secondary uppercase tracking-wider">{badge}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
-          </div>
-        </section>
-
-        {/* ── 2. PROOF (Small: 60vh) ── */}
-        <section className="min-h-[60vh] flex flex-col items-center justify-center bg-white border-y border-border/10 py-20">
-          <div className="w-full max-w-[1100px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 items-center">
-            <div className="flex flex-col items-center text-center gap-3">
-              <span className="text-5xl md:text-6xl font-bold text-[#0F172A] tracking-tighter">24+</span>
-              <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Products Shipped</span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-3">
-              <span className="text-5xl md:text-6xl font-bold text-[#0F172A] tracking-tighter">14d</span>
-              <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Avg. Launch</span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-3">
-              <span className="text-5xl md:text-6xl font-bold text-[#0F172A] tracking-tighter">100%</span>
-              <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Direct Access</span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-3">
-              <span className="text-5xl md:text-6xl font-bold text-[#0F172A] tracking-tighter">0</span>
-              <span className="text-[10px] font-bold text-accent uppercase tracking-[0.3em]">Middlemen</span>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 3. WORKS (Primary: 100vh) ── */}
-        <section id="works" className="min-h-screen flex flex-col items-center justify-center bg-white py-20">
-          <div className="w-full max-w-[1100px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
-              <div className="flex flex-col gap-4">
-                <span className="text-accent font-bold text-xs tracking-[0.4em] uppercase">The Portfolio</span>
-                <h2 className="text-[clamp(2.5rem,7vw,5rem)] font-bold tracking-tighter leading-none text-[#0F172A]">Real-World Results<span className="text-accent">.</span></h2>
-              </div>
-              <Link href="/works" className="group text-accent font-bold uppercase text-xs tracking-[0.3em] border-b-2 border-accent/20 hover:border-accent transition-all pb-1 flex items-center gap-2">
-                All Projects <span className="material-symbols-outlined text-lg">east</span>
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-              {/* Project 1 */}
-              <Link href="/works" className="group flex flex-col gap-6">
-                <div className="aspect-[4/3] relative rounded-3xl overflow-hidden shadow-2xl border border-border/30 bg-[#F8FAFC]">
-                  <Image src="/assets/drawing app.png" fill alt="Air Drawing" className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-3xl font-bold text-[#0F172A]">Air Drawing App</h3>
-                  <div className="flex items-center gap-3 py-3 border-y border-border/50">
-                    <span className="text-xs font-bold text-[#64748B] uppercase tracking-wider">Outcome: Instant gesture rendering</span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Project 2 */}
-              <Link href="/works" className="group flex flex-col gap-6">
-                <div className="aspect-[4/3] relative rounded-3xl overflow-hidden shadow-2xl border border-border/30 bg-[#F8FAFC]">
-                  <Image src="/assets/face sorter.png" fill alt="Face Finder" className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-3xl font-bold text-[#0F172A]">Face Finder</h3>
-                  <div className="flex items-center gap-3 py-3 border-y border-border/50">
-                    <span className="text-xs font-bold text-[#64748B] uppercase tracking-wider">Outcome: 10k+ images delivered daily</span>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ── 4. WHY WORK WITH US (Secondary: 80vh) ── */}
-        <section className="min-h-[80vh] flex flex-col items-center justify-center bg-[#F8FAFC] border-y border-border/20 py-20">
-          <div className="w-full max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-center">
-            <div className="flex flex-col gap-6">
-              <span className="text-accent font-bold text-xs tracking-[0.4em] uppercase">Why Us</span>
-              <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tighter leading-[1.1] text-[#0F172A]">Zero Bloat. <br />Maximum Output.</h2>
-              <p className="text-lg text-[#64748B] font-medium leading-relaxed max-w-lg">
-                We work directly with founders to build scalable products. No account managers, no ambiguity.
-              </p>
-            </div>
 
             <motion.div 
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 0.5 }}
+              className="hidden lg:flex items-center justify-center relative"
             >
-              <motion.div variants={fadeInItem} className="bg-white p-8 rounded-2xl shadow-lg border border-border/30">
-                <h4 className="text-lg font-bold mb-2 text-[#0F172A]">AI-Native</h4>
-                <p className="text-[#64748B] text-sm font-medium">Built with intelligence at the core.</p>
-              </motion.div>
-              <motion.div variants={fadeInItem} className="bg-white p-8 rounded-2xl shadow-lg border border-border/30">
-                <h4 className="text-lg font-bold mb-2 text-[#0F172A]">Velocity</h4>
-                <p className="text-[#64748B] text-sm font-medium">Enterprise ERP in weeks, not years.</p>
-              </motion.div>
-              <motion.div variants={fadeInItem} className="bg-white p-8 rounded-2xl shadow-lg border border-border/30">
-                <h4 className="text-lg font-bold mb-2 text-[#0F172A]">Scalability</h4>
-                <p className="text-[#64748B] text-sm font-medium">Multi-tenant SaaS ready systems.</p>
-              </motion.div>
-              <motion.div variants={fadeInItem} className="bg-white p-8 rounded-2xl shadow-lg border border-border/30">
-                <h4 className="text-lg font-bold mb-2 text-[#0F172A]">Precision</h4>
-                <p className="text-[#64748B] text-sm font-medium">Automated workflows with 0% bloat.</p>
-              </motion.div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15)_0%,transparent_70%)]" />
+              {/* Placeholder for complex visualization */}
+              <div className="w-full aspect-square border border-border/30 bg-surface/30 backdrop-blur-sm rounded-full relative flex items-center justify-center">
+                <div className="w-[80%] aspect-square border border-accent/20 rounded-full flex items-center justify-center animate-[spin_60s_linear_infinite]">
+                  <div className="w-[60%] aspect-square border border-border/40 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-6xl text-accent/50 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]">memory</span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
 
-        {/* ── 5. PROCESS (Secondary: 80vh) ── */}
-        <section id="services" className="min-h-[80vh] flex flex-col items-center justify-center bg-white py-20">
-          <div className="w-full max-w-[1100px] mx-auto px-6">
-            <div className="flex flex-col items-center text-center mb-16 gap-4">
-              <span className="text-accent font-bold text-xs tracking-[0.4em] uppercase">The Protocols</span>
-              <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tighter leading-none text-[#0F172A]">Predictable Launch Cycles.</h2>
-            </div>
+        {/* ── 2. TRUST BAR ── */}
+        <MetricBar />
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
-              <div className="flex flex-col gap-4 text-center items-center">
-                <span className="text-3xl font-bold text-accent/20">01</span>
-                <h4 className="font-bold text-[#0F172A]">Blueprint</h4>
-                <p className="text-xs text-[#64748B] font-medium leading-relaxed">Technical audit and scope mapping.</p>
-              </div>
-              <div className="flex flex-col gap-4 text-center items-center">
-                <span className="text-3xl font-bold text-accent/20">02</span>
-                <h4 className="font-bold text-[#0F172A]">Forge</h4>
-                <p className="text-xs text-[#64748B] font-medium leading-relaxed">High-velocity engineering sprints.</p>
-              </div>
-              <div className="flex flex-col gap-4 text-center items-center">
-                <span className="text-3xl font-bold text-accent/20">03</span>
-                <h4 className="font-bold text-[#0F172A]">Hardening</h4>
-                <p className="text-xs text-[#64748B] font-medium leading-relaxed">Security and performance audit.</p>
-              </div>
-              <div className="flex flex-col gap-4 text-center items-center">
-                <span className="text-3xl font-bold text-accent/20">04</span>
-                <h4 className="font-bold text-[#0F172A]">Launch</h4>
-                <p className="text-xs text-[#64748B] font-medium leading-relaxed">Production-ready deployment.</p>
-              </div>
+        {/* ── 3. WHY WE EXIST ── */}
+        <section className="py-32 relative border-b border-border/20">
+          <div className="max-w-[900px] mx-auto px-6 text-center">
+            <span className="text-xs font-mono text-accent uppercase tracking-[0.3em] mb-6 block">Philosophy</span>
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-tight text-white mb-10 leading-tight">
+              We don't build software. <br />
+              <span className="text-text-secondary">We solve engineering problems.</span>
+            </h2>
+            <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
+              True innovation requires more than just code. It demands a rigorous research-first methodology, deep architectural planning, and an understanding of complex business constraints. We partner with industry leaders to engineer systems that are not only scalable, but transformational.
+            </p>
+          </div>
+        </section>
+
+        {/* ── 4. CAPABILITIES ── */}
+        <section id="capabilities" className="py-32 bg-surface/30 border-b border-border/20">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex flex-col gap-4 mb-16">
+              <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">Capabilities</span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">End-to-End Innovation</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: "Software Engineering", desc: "Enterprise SaaS, ERP systems, and business automation platforms built for extreme scale.", icon: "terminal" },
+                { title: "Artificial Intelligence", desc: "Computer vision, predictive modeling, and applied AI systems deployed in production.", icon: "neurology" },
+                { title: "Hardware Engineering", desc: "PCB design, embedded systems, and IoT prototyping for industrial applications.", icon: "developer_board" },
+                { title: "Cloud & Infrastructure", desc: "Global cloud architecture, DevOps automation, and secure data pipelines.", icon: "cloud_sync" },
+                { title: "Technology Consulting", desc: "Strategic feasibility, architectural audits, and technical roadmapping for leadership.", icon: "architecture" }
+              ].map((cap, i) => (
+                <div key={i} className="group p-8 border border-border/50 bg-bg hover:border-accent/50 transition-colors flex flex-col gap-6">
+                  <span className="material-symbols-outlined text-3xl text-accent">{cap.icon}</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-3">{cap.title}</h3>
+                    <p className="text-sm text-text-secondary leading-relaxed">{cap.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Process Visualizer */}
-        <div className="w-full bg-white">
-          <ProcessScroller />
-        </div>
-
-        {/* ── 6. CTA (Primary: 100vh) ── */}
-        <section id="contact" className="min-h-screen flex flex-col items-center justify-center bg-[#F1F5F9] border-t border-border/20 py-20">
-          <div className="w-full max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5 flex flex-col gap-8">
-              <div className="flex flex-col gap-6">
-                <span className="text-accent font-bold text-xs tracking-[0.4em] uppercase">Transmission</span>
-                <h2 className="text-[clamp(3rem,8vw,5rem)] font-bold tracking-tighter leading-tight text-[#0F172A]">Ship your idea this quarter.</h2>
-                <p className="text-lg font-medium text-[#64748B] max-w-sm leading-relaxed">
-                  We reply within 12 hours with a direct audit of your project mission.
-                </p>
+        {/* ── 5. RESEARCH & DEVELOPMENT ── */}
+        <section className="py-32 border-b border-border/20 relative overflow-hidden">
+          <EnterpriseGrid />
+          <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
+              <div className="flex flex-col gap-4">
+                <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">Methodology</span>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Research & Development</h2>
+                <p className="text-text-secondary max-w-xl">Every transformational product begins in the lab. We validate ideas through rigorous technical feasibility studies before writing a single line of production code.</p>
               </div>
-
-              <div className="flex flex-col gap-6">
-                <a href="mailto:t.0youthingwebuild@gmail.com" className="text-xl font-bold text-accent hover:text-accent-hover transition-colors">t.0youthingwebuild@gmail.com</a>
-                <div className="flex flex-col gap-3">
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-[#64748B] uppercase tracking-widest">Kevin Mathew</span>
-                    <a href="tel:7909191060" className="text-lg font-bold text-[#0F172A] hover:text-accent transition-colors">+91 79091 91060</a>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-[#64748B] uppercase tracking-widest">Akshay K A</span>
-                    <a href="tel:6235713616" className="text-lg font-bold text-[#0F172A] hover:text-accent transition-colors">+91 62357 13616</a>
-                  </div>
+              <Link href="/research" className="border-b border-accent text-accent font-mono text-xs uppercase tracking-widest pb-1 hover:text-white hover:border-white transition-colors flex items-center gap-2">
+                View R&D Log <span className="material-symbols-outlined text-sm">east</span>
+              </Link>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {['Idea Validation', 'Rapid Prototyping', 'Technical Feasibility'].map((step, idx) => (
+                <div key={idx} className="border-l border-accent/30 pl-6 py-2 relative">
+                  <div className="absolute -left-1 top-0 w-2 h-2 rounded-full bg-accent" />
+                  <span className="font-mono text-xs text-text-secondary">PHASE 0{idx + 1}</span>
+                  <h4 className="text-lg font-bold text-white mt-2">{step}</h4>
                 </div>
-                <Link href="https://calendly.com" className="font-bold text-[#0F172A] hover:text-accent transition-colors flex items-center gap-2 mt-2">
-                  Book Strategy Call →
-                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 6. ENGINEERING PROCESS ── */}
+        <section className="py-32 bg-surface/30 border-b border-border/20 overflow-x-hidden">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex flex-col gap-4 mb-16">
+              <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">The Protocols</span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Predictable Launch Cycles</h2>
+            </div>
+            
+            <div className="flex gap-4 overflow-x-auto pb-8 snap-x scrollbar-hide">
+              {["Discovery", "Research", "Feasibility", "Architecture", "Prototype", "Validation", "Development", "Deployment", "Optimization", "Innovation"].map((step, i) => (
+                <div key={i} className="snap-start min-w-[280px] p-6 border border-border/50 bg-bg shrink-0">
+                  <div className="text-3xl font-bold text-surface-hover mb-4">{(i + 1).toString().padStart(2, '0')}</div>
+                  <h4 className="font-bold text-white mb-2">{step}</h4>
+                  <div className="h-1 w-12 bg-accent/30 mt-4" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 7. CASE STUDIES (Simplified for Homepage) ── */}
+        <section className="py-32 border-b border-border/20">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex justify-between items-end mb-16">
+              <div className="flex flex-col gap-4">
+                <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">Proof</span>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Deployed Systems</h2>
               </div>
+              <Link href="/works" className="border-b border-accent text-accent font-mono text-xs uppercase tracking-widest pb-1 hover:text-white hover:border-white transition-colors hidden sm:flex items-center gap-2">
+                All Case Studies <span className="material-symbols-outlined text-sm">east</span>
+              </Link>
             </div>
 
-            <div className="lg:col-span-7 bg-white border border-border/30 rounded-3xl shadow-2xl p-8 sm:p-12">
-              <form onSubmit={handleSubmit} className="space-y-10">
-                <div className="space-y-2">
-                  <label className="block font-bold text-[10px] text-accent uppercase tracking-widest">Company / Founder</label>
-                  <input
-                    name="name"
-                    required
-                    className="w-full bg-transparent border-b-2 border-border/30 py-4 font-bold text-xl focus:outline-none focus:border-accent transition-colors text-[#0F172A] placeholder-[#94A3B8]"
-                    placeholder="Who are we building for?"
-                    type="text"
-                  />
+            <div className="flex flex-col gap-12">
+              {[1, 2].map((_, i) => (
+                <div key={i} className="group border border-border/50 bg-surface/20 hover:bg-surface/40 transition-colors flex flex-col lg:flex-row gap-0 overflow-hidden">
+                  <div className="lg:w-1/2 aspect-video bg-surface-hover relative overflow-hidden">
+                     {/* Placeholder for cinematic project imagery */}
+                     <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="font-mono text-text-secondary text-sm">SYSTEM_RENDER_0{i+1}.WEBP</span>
+                     </div>
+                  </div>
+                  <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center gap-6">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[10px] font-mono border border-border px-2 py-1 uppercase text-text-secondary">Enterprise</span>
+                      <span className="text-[10px] font-mono border border-border px-2 py-1 uppercase text-text-secondary">AI Infrastructure</span>
+                    </div>
+                    <h3 className="text-3xl font-bold text-white">Global Manufacturing Predictive Maintenance</h3>
+                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-border/30">
+                      <div>
+                        <span className="text-[10px] font-mono text-text-secondary uppercase">Impact</span>
+                        <p className="text-white font-bold mt-1">42% Error Reduction</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-mono text-text-secondary uppercase">Timeline</span>
+                        <p className="text-white font-bold mt-1">12 Weeks</p>
+                      </div>
+                    </div>
+                    <Link href="/works" className="text-sm font-bold text-accent uppercase tracking-widest flex items-center gap-2 mt-2 w-fit group-hover:translate-x-2 transition-transform">
+                      Read Architecture <span className="material-symbols-outlined text-sm">east</span>
+                    </Link>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block font-bold text-[10px] text-accent uppercase tracking-widest">Project Mission</label>
-                  <textarea
-                    name="mission"
-                    required
-                    className="w-full bg-transparent border-b-2 border-border/30 py-4 font-bold text-xl focus:outline-none focus:border-accent transition-colors h-32 text-[#0F172A] placeholder-[#94A3B8] resize-none"
-                    placeholder="What are we shipping?"
-                  ></textarea>
-                </div>
-                <button
-                  disabled={formStatus === "submitting"}
-                  className="w-full bg-[#16A34A] text-white p-6 rounded-2xl font-bold text-xl hover:bg-accent-hover hover:scale-[1.01] hover:-translate-y-1 transition-all shadow-[0_20px_40px_rgba(22,163,74,0.25)]"
-                >
-                  {formStatus === "submitting" ? "Launching..." : "Initialize Build"}
-                </button>
-              </form>
+              ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── 8. FINAL CTA ── */}
+        <section id="contact" className="py-32 relative border-t border-border/20 bg-surface/50">
+          <EnterpriseGrid />
+          <div className="max-w-[800px] mx-auto px-6 text-center relative z-10 flex flex-col items-center gap-8">
+            <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">Transmission</span>
+            <h2 className="text-[clamp(3rem,6vw,4.5rem)] font-bold tracking-tighter text-white leading-none">
+              Let's Engineer <br /> What's Next.
+            </h2>
+            <p className="text-lg text-text-secondary max-w-lg mb-4">
+              We partner with organizations to research, architect, and deploy systems that solve complex technological challenges.
+            </p>
+            <Link href="mailto:t.0youthingwebuild@gmail.com" className="bg-white text-bg px-10 py-5 font-bold text-sm uppercase tracking-widest hover:bg-white/90 transition-all flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+              Book Discovery Session
+              <span className="material-symbols-outlined">rocket_launch</span>
+            </Link>
           </div>
         </section>
 

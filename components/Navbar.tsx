@@ -7,9 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
-
-  // Handle escape key to close menu
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsMenuOpen(false);
@@ -19,41 +16,46 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Manifesto", href: "/manifesto", id: "01 // THE CORE" },
-    { name: "Works", href: "/works", id: "02 // INTEL" },
-    { name: "Contact", href: "/#contact", id: "03 // TRANSMISSION" },
+    { name: "Capabilities", href: "/#capabilities", id: "01" },
+    { name: "Research", href: "/research", id: "02" },
+    { name: "Case Studies", href: "/works", id: "03" },
+    { name: "Innovation Lab", href: "/#innovation-lab", id: "04" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] border-b border-border px-4 md:px-6 py-3 md:py-4 bg-surface/95 backdrop-blur-md transition-all text-text-primary">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full z-[100] border-b border-border/50 bg-surface/80 backdrop-blur-xl transition-all text-text-primary">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         {/* Brand */}
-        <Link href="/" className="text-3xl md:text-5xl font-bold tracking-tighter hover:text-accent transition-colors leading-none font-[family-name:var(--font-museo-moderno)]">
-          T-0
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 bg-accent flex items-center justify-center rounded-sm">
+            <span className="font-mono font-bold text-white text-xs group-hover:scale-110 transition-transform">T-0</span>
+          </div>
+          <span className="font-bold tracking-tight text-xl hidden sm:block">Engineering</span>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 lg:gap-12 font-semibold text-sm tracking-widest text-text-secondary">
+        <div className="hidden md:flex gap-10 font-medium text-xs tracking-widest text-text-secondary uppercase">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className="hover:text-accent transition-colors">
+            <Link key={link.name} href={link.href} className="hover:text-accent transition-colors flex items-center gap-2">
+              <span className="text-[9px] opacity-50 font-mono">{link.id}</span>
               {link.name}
             </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {/* Desktop CTA */}
-          <Link href="/#contact" className="hidden sm:block bg-accent text-surface px-5 md:px-6 py-2.5 rounded-[10px] font-semibold uppercase text-xs tracking-wide hover:bg-accent-hover hover:-translate-y-0.5 transition-all shadow-[0_6px_16px_rgba(22,163,74,0.25)] whitespace-nowrap">
-            Start a project
+          <Link href="/#contact" className="hidden sm:block border border-border hover:border-accent text-text-primary px-5 py-2.5 rounded-sm font-medium uppercase text-xs tracking-wider hover:text-accent transition-all whitespace-nowrap">
+            Book Session
           </Link>
 
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-text-primary p-1 flex items-center justify-center relative z-[110]"
+            className="md:hidden text-text-primary p-2 border border-border/50 rounded-sm flex items-center justify-center relative z-[110]"
             aria-label="Toggle Menu"
           >
-            <span className="material-symbols-outlined text-4xl">
+            <span className="material-symbols-outlined text-2xl">
               {isMenuOpen ? "close" : "menu"}
             </span>
           </button>
@@ -68,11 +70,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="absolute top-full left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-border z-[105] md:hidden shadow-2xl overflow-hidden"
+            className="absolute top-full left-0 w-full bg-surface/95 backdrop-blur-2xl border-b border-border z-[105] md:hidden shadow-2xl overflow-hidden"
           >
-            <div className="flex flex-col p-8 gap-10">
-
-
+            <div className="flex flex-col p-8 gap-8">
               <div className="flex flex-col gap-6 mt-4">
                 {navLinks.map((link, i) => (
                   <motion.div
@@ -82,12 +82,10 @@ export default function Navbar() {
                     transition={{ delay: 0.1 + i * 0.08 }}
                   >
                     <Link onClick={() => setIsMenuOpen(false)} href={link.href} className="group block">
-                      <div className="flex justify-between items-center py-2">
-                        <span className="text-2xl font-bold tracking-tight text-text-primary group-hover:text-accent transition-colors">
+                      <div className="flex items-center gap-4 py-2 border-b border-border/20">
+                        <span className="text-xs font-mono text-text-secondary">{link.id}</span>
+                        <span className="text-xl font-bold tracking-tight text-text-primary group-hover:text-accent transition-colors">
                           {link.name}
-                        </span>
-                        <span className="material-symbols-outlined text-accent opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
-                          arrow_forward
                         </span>
                       </div>
                     </Link>
@@ -95,13 +93,13 @@ export default function Navbar() {
                 ))}
               </div>
 
-              <div className="pt-4 border-t border-border/50">
+              <div className="pt-4">
                 <Link
                   onClick={() => setIsMenuOpen(false)}
                   href="/#contact"
-                  className="block bg-accent text-surface rounded-[10px] px-6 py-4 font-bold text-center hover:bg-accent-hover transition-all"
+                  className="block bg-accent text-white rounded-sm px-6 py-4 font-bold text-center uppercase tracking-widest text-sm hover:bg-accent-hover transition-all"
                 >
-                  Start a project
+                  Book Strategy Session
                 </Link>
               </div>
             </div>
