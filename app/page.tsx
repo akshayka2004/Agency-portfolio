@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { EnterpriseGrid } from "@/components/ui/EnterpriseGrid";
 import { MetricBar } from "@/components/ui/MetricBar";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
