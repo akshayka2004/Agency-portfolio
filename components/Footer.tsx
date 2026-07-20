@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Brand from "@/components/Brand";
 import BrandMark from "@/components/BrandMark";
 import { CONTACT } from "@/lib/content";
 
@@ -35,7 +36,7 @@ export default function Footer() {
               <BrandMark height={40} />
             </Link>
             <p className="text-sm text-text-secondary max-w-sm leading-relaxed">
-              You think. We build. The moment in between is T−0.
+              You think. We build. The moment in between is <Brand />.
             </p>
             <div className="brand-rule w-12" />
           </div>
@@ -83,7 +84,9 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <p className="text-sm text-text-tertiary">&copy; {currentYear} T−0.</p>
+            <p className="text-sm text-text-tertiary">
+              &copy; {currentYear} <Brand />.
+            </p>
             <Link
               href="/privacy"
               className="text-sm text-text-tertiary hover:text-text-primary transition-colors"

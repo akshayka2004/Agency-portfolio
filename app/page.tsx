@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Brand from "@/components/Brand";
 import MissionClock from "@/components/MissionClock";
 import MissionTerminal from "@/components/MissionTerminal";
 import {
@@ -31,7 +32,7 @@ function SectionHead({
 }: {
   seq: string;
   title: string;
-  lead: string;
+  lead: React.ReactNode;
 }) {
   return (
     <motion.div {...reveal} transition={{ duration: 0.6 }} className="mb-14 max-w-[760px]">
@@ -71,14 +72,15 @@ export default function Home() {
               We build.
               <br />
               The moment in between is{" "}
-              <span className="text-accent">
+              <span className="font-brand text-accent">
                 T<span className="text-accent-lime">−</span>0
               </span>
               .
             </h1>
 
             <p className="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-xl">
-              In a launch countdown, T−0 is the instant preparation becomes liftoff. That&apos;s
+              In a launch countdown, <Brand />{" "}
+              is the instant preparation becomes liftoff. That&apos;s
               where we work — turning your ideas into web platforms, mobile apps, SaaS products, AI
               automation and hardware that ships.
             </p>
@@ -438,7 +440,13 @@ export default function Home() {
           <SectionHead
             seq="SEQ 06 — The people"
             title="Two engineers, one workshop."
-            lead="T−0 is small on purpose. The people who scope your project are the people who build it — no account layer, no hand-off, no telephone game between you and the code."
+            lead={
+              <>
+                <Brand /> is small on purpose. The people who scope your project are the people who
+                build it — no account layer, no hand-off, no telephone game between you and the
+                code.
+              </>
+            }
           />
 
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center">
@@ -465,8 +473,9 @@ export default function Home() {
             >
               <p className="text-text-secondary leading-relaxed">
                 Founded in Kerala by two engineers who kept ending up on the same problem from
-                opposite directions — one from the browser down, one from the circuit board up. T−0
-                is what that overlap turned into: a studio that can design an interface in the
+                opposite directions — one from the browser down, one from the circuit board up.{" "}
+                <Brand /> is what that overlap turned into: a studio that can design an interface in
+                the
                 morning and read a firmware dump in the afternoon.
               </p>
 

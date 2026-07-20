@@ -125,7 +125,7 @@ export default function MissionTerminal() {
           <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent-lime)]" />
         </span>
         <span className="term-chrome text-[10px] text-[var(--term-muted)]">
-          t0 — mission console
+          <span className="font-brand">T−0</span> — mission console
         </span>
         <span className="term-chrome ml-auto text-[10px] text-[var(--accent-lime)] tabular-nums">
           {clock}

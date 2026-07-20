@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import Brand from "@/components/Brand";
 import { CONTACT } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -6,7 +8,7 @@ export const metadata: Metadata = {
   description: "The terms that apply to this website and to working with T−0.",
 };
 
-const SECTIONS = [
+const SECTIONS: { heading: string; body: ReactNode[] }[] = [
   {
     heading: "This website",
     body: [
@@ -40,7 +42,10 @@ const SECTIONS = [
   {
     heading: "Trademarks",
     body: [
-      "The T−0 name, mark and site content belong to T−0. Other names and logos referenced belong to their respective owners.",
+      <>
+        The <Brand /> name, mark and site content belong to <Brand />. Other names and logos
+        referenced belong to their respective owners.
+      </>,
     ],
   },
 ];
@@ -63,8 +68,8 @@ export default function TermsPage() {
           {SECTIONS.map((section) => (
             <section key={section.heading} className="flex flex-col gap-3">
               <h2 className="text-xl font-bold tracking-tight">{section.heading}</h2>
-              {section.body.map((paragraph) => (
-                <p key={paragraph} className="text-text-secondary leading-relaxed">
+              {section.body.map((paragraph, i) => (
+                <p key={i} className="text-text-secondary leading-relaxed">
                   {paragraph}
                 </p>
               ))}

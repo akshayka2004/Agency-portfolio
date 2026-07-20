@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Brand from "@/components/Brand";
 import { FOUNDERS } from "@/lib/content";
 
 const reveal = {
@@ -53,7 +54,8 @@ export default function AboutPage() {
             A studio built around the gap between an idea and a running system.
           </h1>
           <p className="text-lg sm:text-xl text-text-secondary leading-relaxed">
-            T−0 is an engineering and design studio in Kerala, India. We work across web, mobile,
+            <Brand />{" "}
+            is an engineering and design studio in Kerala, India. We work across web, mobile,
             SaaS, applied AI and hardware R&amp;D — the whole span, because the interesting problems
             rarely sit inside one of those boxes.
           </p>
@@ -102,8 +104,9 @@ export default function AboutPage() {
               </div>
 
               <p className="text-text-secondary leading-relaxed">
-                One came at problems from the browser down, the other from the circuit board up. T−0
-                is what that overlap became — a studio that can design an interface in the morning
+                One came at problems from the browser down, the other from the circuit board up.{" "}
+                <Brand /> is what that overlap became — a studio that can design an interface in the
+                morning
                 and read a firmware dump in the afternoon, without outsourcing either.
               </p>
               <p className="text-text-secondary leading-relaxed">
