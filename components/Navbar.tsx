@@ -3,13 +3,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import BrandMark from "@/components/BrandMark";
+import MissionClock from "@/components/MissionClock";
 
 const NAV_LINKS = [
-  { name: "Work", href: "/works" },
-  { name: "Capabilities", href: "/#capabilities" },
+  { name: "Services", href: "/#services" },
+  { name: "Work", href: "/#work" },
+  { name: "Process", href: "/#process" },
   { name: "Research", href: "/research" },
-  { name: "Journal", href: "/#insights" },
-  { name: "Company", href: "/#company" },
+  { name: "About", href: "/about" },
 ];
 
 export default function Navbar() {
@@ -17,99 +19,125 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll while the mobile sheet is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
-      <header 
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? "bg-bg/90 backdrop-blur-md border-b border-border shadow-sm py-4" 
-            : "bg-transparent py-6"
+          isScrolled
+            ? "bg-bg/85 backdrop-blur-md border-b border-border py-3"
+            : "bg-transparent py-5"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className="group flex flex-col justify-center"
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between gap-6">
+          <Link
+            href="/"
+            aria-label="T−0 home"
+            className="shrink-0"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <span className="text-xl font-bold tracking-tight text-text-primary">
-              T-0
-            </span>
+            <BrandMark height={34} priority />
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+              <Link
+                key={link.name}
+                href={link.href}
+                className="link-draw text-sm font-medium text-text-secondary hover:text-text-primary transition-colors duration-300"
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* Contact / CTA */}
-          <div className="hidden lg:flex items-center gap-6">
-            <Link 
-              href="/#contact" 
-              className="text-sm font-medium text-text-primary hover:text-accent transition-colors"
+          <div className="hidden lg:flex items-center gap-5">
+            <MissionClock className="text-[11px] text-accent border border-accent-line bg-[var(--accent-dim)] rounded px-2.5 py-1.5" />
+            <Link
+              href="/#contact"
+              className="text-sm font-medium bg-accent text-white px-5 py-2.5 rounded-lg transition-all duration-300 hover:bg-accent-dark hover:shadow-[0_8px_20px_-8px_rgba(0,147,214,0.6)]"
             >
               Contact
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 z-50 relative"
+          <button
+            className="lg:hidden flex flex-col justify-center items-center gap-1.5 w-9 h-9 z-50 relative"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            <span className={`w-6 h-[2px] bg-text-primary transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-[2px]" : "-translate-y-1"}`}></span>
-            <span className={`w-6 h-[2px] bg-text-primary transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`}></span>
-            <span className={`w-6 h-[2px] bg-text-primary transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-[2px]" : "translate-y-1"}`}></span>
+            <span
+              className={`w-6 h-[2px] bg-text-primary transition-all duration-300 ${
+                isMobileMenuOpen ? "rotate-45 translate-y-[7px]" : ""
+              }`}
+            />
+            <span
+              className={`w-6 h-[2px] bg-text-primary transition-all duration-300 ${
+                isMobileMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`w-6 h-[2px] bg-text-primary transition-all duration-300 ${
+                isMobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              }`}
+            />
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-bg flex flex-col justify-center items-center px-6"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-bg flex flex-col justify-center items-center px-6 lg:hidden"
           >
-            <nav className="flex flex-col items-center gap-8 w-full max-w-sm">
-              {NAV_LINKS.map((link) => (
-                <Link 
-                  key={link.name} 
-                  href={link.href} 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-semibold text-text-primary hover:text-accent transition-colors"
+            <nav className="flex flex-col items-center gap-7 w-full max-w-sm">
+              {NAV_LINKS.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.06 * i }}
+                  className="w-full text-center"
                 >
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-2xl font-semibold text-text-primary hover:text-accent transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
-              <div className="w-full h-px bg-border my-4"></div>
-              <Link 
-                href="/#contact" 
+
+              <div className="w-full h-px bg-border my-2" />
+
+              <Link
+                href="/#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center bg-text-primary text-white py-4 rounded-xl text-lg font-semibold hover:bg-accent transition-colors shadow-sm"
+                className="w-full text-center bg-accent text-white py-4 rounded-xl text-lg font-semibold hover:bg-accent-dark transition-colors"
               >
                 Contact
               </Link>
+
+              <MissionClock className="text-xs text-text-tertiary mt-2" />
             </nav>
           </motion.div>
         )}

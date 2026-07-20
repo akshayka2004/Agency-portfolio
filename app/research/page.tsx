@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 const researchCapabilities = [
   {
@@ -31,7 +32,7 @@ export default function ResearchPage() {
         
         <div className="flex flex-col gap-6 mb-24 max-w-3xl">
           <Link href="/" className="text-sm font-semibold text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2 mb-4 w-fit">
-            <span className="material-symbols-outlined text-sm">west</span> Back to Hub
+            <ArrowLeft className="w-4 h-4" /> Back to Hub
           </Link>
           <h1 className="text-[clamp(3rem,6vw,5rem)] font-bold tracking-tight text-text-primary leading-none">
             Research Capabilities.

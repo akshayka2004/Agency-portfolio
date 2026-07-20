@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Cpu } from "lucide-react";
 
 const PROJECTS = [
   {
@@ -58,7 +59,7 @@ export default function Works() {
               {/* Large Image Area */}
               <div className="w-full aspect-[21/9] bg-surface rounded-[24px] border border-border shadow-sm flex items-center justify-center relative overflow-hidden group">
                 <div className="absolute inset-0 bg-surface-secondary group-hover:scale-105 transition-transform duration-1000" />
-                <span className="material-symbols-outlined text-8xl text-border z-10">memory</span>
+                <Cpu className="w-24 h-24 text-border-strong z-10" strokeWidth={1} />
               </div>
 
               {/* Header */}

@@ -22,31 +22,35 @@ const museoModerno = MuseoModerno({
 
 import type { Metadata } from "next";
 
+const DESCRIPTION =
+  "T−0 builds web platforms, mobile apps, SaaS products, AI automation and hardware R&D from Kerala, India. You think. We build.";
+
 export const metadata: Metadata = {
-  title: "T-0",
-  description: "T-0 solves problems worth solving. We design, research, and build intelligent systems that last.",
+  title: {
+    default: "T−0 — You Think. We Build.",
+    template: "%s — T−0",
+  },
+  description: DESCRIPTION,
+  metadataBase: new URL("https://t-0.dev"),
   openGraph: {
-    title: "T-0",
-    description: "T-0 solves problems worth solving. We design, research, and build intelligent systems that last.",
+    title: "T−0 — You Think. We Build.",
+    description: DESCRIPTION,
     url: "https://t-0.dev",
-    siteName: "T-0",
+    siteName: "T−0",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "T-0",
-    description: "T-0 solves problems worth solving.",
+    title: "T−0 — You Think. We Build.",
+    description: DESCRIPTION,
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${museoModerno.variable} scroll-smooth`}>
-      <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      </head>
-      <body className="antialiased selection:bg-accent/20 selection:text-accent bg-[#020617]" suppressHydrationWarning>
+      <body className="antialiased bg-bg text-text-primary" suppressHydrationWarning>
         <ScrollProgressBar />
         <Navbar />
         {children}

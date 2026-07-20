@@ -1,18 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #FAFBFC; /* Background */
-  --surface: #FFFFFF; /* Surface */
-  --surface-secondary: #F3F4F6;
+  /* ── Surfaces (light, professional) ── */
+  --bg: #FAFBFC;
+  --surface: #FFFFFF;
+  --surface-secondary: #F4F6F8;
   --surface-hover: #F9FAFB;
-  --text-primary: #111827; /* Heading */
-  --text-secondary: #4B5563; /* Body */
-  --accent: #2F5BEA; /* Primary Blue */
-  --accent-light: #4E7BFF; /* Secondary Blue */
-  --accent-dark: #1F2A44; /* Deep Navy */
-  --accent-teal: #14B8A6; /* Accent */
-  --border: #E5E7EB; /* Border */
-  --success: #16A34A; /* Success */
+
+  /* ── Type ── */
+  --text-primary: #10161F;
+  --text-secondary: #566072;
+  --text-tertiary: #8A94A6;
+
+  /* ── Brand: taken from the T−0 mark ── */
+  --accent: #0093D6;        /* logo blue — primary */
+  --accent-light: #38B0E5;
+  --accent-dark: #0072A8;
+  --accent-lime: #97CC3E;   /* logo lime — secondary */
+  --accent-lime-dark: #7BAE2A;
+  --accent-steel: #7E8794;  /* logo wordmark grey */
+
+  /* ── Derived tints ── */
+  --accent-dim: rgba(0, 147, 214, 0.10);
+  --accent-line: rgba(0, 147, 214, 0.32);
+  --lime-dim: rgba(151, 204, 62, 0.14);
+  --lime-line: rgba(151, 204, 62, 0.38);
+
+  --border: #E4E8ED;
+  --border-strong: #CDD4DC;
+  --success: #16A34A;
+
+  /* ── Motion ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.22, 0.8, 0.28, 1);
 }
 
 @theme {
@@ -22,13 +42,18 @@
   --color-surface-hover: var(--surface-hover);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
-  --color-accent-teal: var(--accent-teal);
+  --color-accent-lime: var(--accent-lime);
+  --color-accent-lime-dark: var(--accent-lime-dark);
+  --color-accent-steel: var(--accent-steel);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-success: var(--success);
-  --font-sans: 'Inter', var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 body {
@@ -41,7 +66,26 @@ body {
   line-height: 1.7;
 }
 
-/* Hide Scrollbar */
+/* Hairline texture — keeps large light areas from feeling flat */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(16, 22, 31, 0.012) 3px 4px
+  );
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Hide scrollbar */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -50,41 +94,161 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none;
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
 }
 
-/* Responsive Overrides */
-@media (max-width: 768px) {
-  .mobile-stack {
-    flex-direction: column;
-  }
-  body {
-    overflow-x: hidden;
-  }
-}
-
-/* Mobile Menu Transitions */
-.mobile-menu-enter {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.mobile-menu-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.mobile-menu-exit {
-  opacity: 1;
-}
-
-.mobile-menu-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
 section {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 88px;
+}
+
+/* ────────────────────────────────────────────
+   Focus — visible, brand-coloured, never removed
+   ──────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ────────────────────────────────────────────
+   Motion primitives (ported from the electric template)
+   ──────────────────────────────────────────── */
+
+/* Ambient hero glow — blue core bleeding into lime */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px circle at 78% 12%, rgba(0, 147, 214, 0.10), transparent 62%),
+    radial-gradient(420px circle at 10% 85%, rgba(151, 204, 62, 0.10), transparent 62%);
+}
+
+/* Continuous marquee for the capability ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Soft pulse for live/status dots */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 147, 214, 0.45); }
+  70%  { box-shadow: 0 0 0 9px rgba(0, 147, 214, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 147, 214, 0); }
+}
+
+.pulse-dot {
+  animation: pulse-ring 2.4s var(--ease-out-expo) infinite;
+}
+
+/* Terminal caret */
+@keyframes caret-blink {
+  0%, 45%  { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+
+.caret {
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+
+/* Sheen that sweeps a card on hover */
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(0, 147, 214, 0.07) 45%,
+    rgba(151, 204, 62, 0.07) 55%,
+    transparent 80%
+  );
+  transition: transform 0.85s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.sheen:hover::after {
+  transform: translateX(110%);
+}
+
+/* Lift-on-hover for cards */
+.lift {
+  transition:
+    transform 0.35s var(--ease-spring),
+    box-shadow 0.35s var(--ease-spring),
+    border-color 0.25s ease;
+}
+
+.lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -12px rgba(16, 22, 31, 0.16);
+  border-color: var(--accent-line);
+}
+
+/* Underline that draws in from the left */
+.link-draw {
+  position: relative;
+}
+
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.link-draw:hover::after {
+  transform: scaleX(1);
+}
+
+/* Brand rule — blue bleeding into lime, mirrors the logo slash */
+.brand-rule {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 45%, var(--accent-lime) 55%, var(--accent-lime) 100%);
+}
+
+/* ────────────────────────────────────────────
+   Reduced motion — honour it everywhere
+   ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .marquee-track,
+  .pulse-dot,
+  .caret {
+    animation: none;
+  }
+
+  .marquee-track { transform: none; }
+
+  .lift:hover { transform: none; }
+
+  .sheen::after,
+  .link-draw::after {
+    transition: none;
+  }
 }
