@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { useState, useEffect } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import MissionClock from "@/components/MissionClock";
+import MissionTerminal from "@/components/MissionTerminal";
 import {
   SERVICES,
   AUDIENCES,
@@ -13,7 +13,6 @@ import {
   PROCESS_STEPS,
   RESEARCH_TRACKS,
   CAPABILITY_TICKER,
-  HERO_PROMPTS,
   FOUNDERS,
   CONTACT,
 } from "@/lib/content";
@@ -48,47 +47,6 @@ function SectionHead({
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
-
-  const [displayText, setDisplayText] = useState("");
-  const [promptIndex, setPromptIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
-
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      setDisplayText(HERO_PROMPTS[0]);
-      return;
-    }
-
-    const currentPrompt = HERO_PROMPTS[promptIndex];
-    let charIndex = 0;
-    let timer: ReturnType<typeof setInterval>;
-
-    if (isTyping) {
-      timer = setInterval(() => {
-        if (charIndex <= currentPrompt.length) {
-          setDisplayText(currentPrompt.slice(0, charIndex));
-          charIndex++;
-        } else {
-          clearInterval(timer);
-          setTimeout(() => setIsTyping(false), 2000);
-        }
-      }, 50);
-    } else {
-      charIndex = currentPrompt.length;
-      timer = setInterval(() => {
-        if (charIndex >= 0) {
-          setDisplayText(currentPrompt.slice(0, charIndex));
-          charIndex--;
-        } else {
-          clearInterval(timer);
-          setPromptIndex((prev) => (prev + 1) % HERO_PROMPTS.length);
-          setIsTyping(true);
-        }
-      }, 30);
-    }
-
-    return () => clearInterval(timer);
-  }, [promptIndex, isTyping, shouldReduceMotion]);
 
   return (
     <div className="min-h-screen bg-bg text-text-primary overflow-x-hidden">
@@ -128,14 +86,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <Link
                 href="#contact"
-                className="group inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-all duration-300 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
+                className="pressable group inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
               >
                 Start a conversation
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="#work"
-                className="inline-flex items-center justify-center border border-border-strong text-text-primary px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-colors duration-300 hover:border-accent hover:text-accent"
+                className="pressable inline-flex items-center justify-center border border-border-strong text-text-primary px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-colors duration-200 hover:border-accent hover:text-accent"
               >
                 See our work
               </Link>
@@ -148,29 +106,8 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:block"
-            aria-hidden="true"
           >
-            <div className="rounded-xl border border-border bg-surface overflow-hidden shadow-[0_18px_50px_-24px_rgba(16,22,31,0.28)]">
-              <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border font-mono text-[10px] tracking-[0.16em] uppercase text-text-tertiary">
-                <span className="pulse-dot w-2 h-2 rounded-full bg-accent" />
-                T−0 · Mission console
-              </div>
-
-              <div className="p-8 flex flex-col items-center justify-center gap-6 aspect-[4/3] bg-surface-secondary">
-                <MissionClock className="text-[clamp(1.9rem,3vw,2.6rem)] text-accent font-medium" />
-
-                <div className="w-full rounded-lg border border-border bg-surface px-4 h-14 flex items-center">
-                  <span className="font-mono text-sm text-text-secondary truncate">
-                    {displayText}
-                    <span className="caret inline-block w-[2px] h-[1em] bg-accent-lime ml-1 align-middle" />
-                  </span>
-                </div>
-
-                <p className="text-xs text-text-tertiary max-w-[260px] text-center leading-relaxed">
-                  Console live. Ready to compile ideas into production systems.
-                </p>
-              </div>
-            </div>
+            <MissionTerminal />
           </motion.div>
         </div>
       </section>
@@ -526,31 +463,35 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.12 }}
               className="flex flex-col gap-5"
             >
-              {FOUNDERS.length > 0 ? (
-                FOUNDERS.map((founder) => (
-                  <div key={founder.name} className="flex flex-col gap-1.5">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                      {founder.title}
-                    </span>
-                    <h3 className="text-xl font-bold tracking-tight">{founder.name}</h3>
-                    <p className="text-text-secondary leading-relaxed">{founder.bio}</p>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <p className="text-text-secondary leading-relaxed">
-                    Founded in Kerala by two engineers who kept ending up on the same problem from
-                    opposite directions — one from the browser down, one from the circuit board up.
-                    T−0 is what that overlap turned into: a studio that can design an interface in
-                    the morning and read a firmware dump in the afternoon.
-                  </p>
-                  <p className="text-text-secondary leading-relaxed">
-                    We stay deliberately small. Every project is worked by the people you meet in the
-                    first call, and every system we hand over is one we would be willing to maintain
-                    ourselves.
-                  </p>
-                </>
-              )}
+              <p className="text-text-secondary leading-relaxed">
+                Founded in Kerala by two engineers who kept ending up on the same problem from
+                opposite directions — one from the browser down, one from the circuit board up. T−0
+                is what that overlap turned into: a studio that can design an interface in the
+                morning and read a firmware dump in the afternoon.
+              </p>
+
+              <div className="flex flex-wrap gap-2.5">
+                {FOUNDERS.map((founder) => (
+                  <span
+                    key={founder.name}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
+                    <span className="text-sm font-semibold tracking-tight">{founder.name}</span>
+                    {founder.title && (
+                      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
+                        {founder.title}
+                      </span>
+                    )}
+                  </span>
+                ))}
+              </div>
+
+              <p className="text-text-secondary leading-relaxed">
+                We stay deliberately small. Every project is worked by the people you meet in the
+                first call, and every system we hand over is one we would be willing to maintain
+                ourselves.
+              </p>
 
               <div className="brand-rule w-14 mt-2" />
 
@@ -582,10 +523,10 @@ export default function Home() {
             </p>
             <Link
               href={`mailto:${CONTACT.email}`}
-              className="group inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-all duration-300 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
+              className="pressable group inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
             >
               Email {CONTACT.email}
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </motion.div>
 

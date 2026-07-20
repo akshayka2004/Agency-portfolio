@@ -79,33 +79,38 @@ export default function AboutPage() {
                 The founders
               </span>
 
-              {FOUNDERS.length > 0 ? (
-                FOUNDERS.map((founder) => (
-                  <div key={founder.name} className="flex flex-col gap-1.5">
-                    <h2 className="text-xl font-bold tracking-tight">{founder.name}</h2>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
-                      {founder.title}
-                    </span>
-                    <p className="text-text-secondary leading-relaxed">{founder.bio}</p>
+              <h2 className="text-2xl font-bold tracking-tight">
+                Two engineers who kept meeting in the middle.
+              </h2>
+
+              <div className="flex flex-col gap-2.5">
+                {FOUNDERS.map((founder) => (
+                  <div key={founder.name} className="flex flex-col gap-0.5">
+                    <span className="text-lg font-bold tracking-tight">{founder.name}</span>
+                    {founder.title && (
+                      <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                        {founder.title}
+                      </span>
+                    )}
+                    {founder.bio && (
+                      <p className="text-sm text-text-secondary leading-relaxed mt-1">
+                        {founder.bio}
+                      </p>
+                    )}
                   </div>
-                ))
-              ) : (
-                <>
-                  <h2 className="text-2xl font-bold tracking-tight">
-                    Two engineers who kept meeting in the middle.
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed">
-                    One came at problems from the browser down, the other from the circuit board up.
-                    T−0 is what that overlap became — a studio that can design an interface in the
-                    morning and read a firmware dump in the afternoon, without outsourcing either.
-                  </p>
-                  <p className="text-text-secondary leading-relaxed">
-                    We stay deliberately small. Every project is worked by the people you meet on the
-                    first call, and every system we hand over is one we would be willing to maintain
-                    ourselves.
-                  </p>
-                </>
-              )}
+                ))}
+              </div>
+
+              <p className="text-text-secondary leading-relaxed">
+                One came at problems from the browser down, the other from the circuit board up. T−0
+                is what that overlap became — a studio that can design an interface in the morning
+                and read a firmware dump in the afternoon, without outsourcing either.
+              </p>
+              <p className="text-text-secondary leading-relaxed">
+                We stay deliberately small. Every project is worked by the people you meet on the
+                first call, and every system we hand over is one we would be willing to maintain
+                ourselves.
+              </p>
             </div>
           </div>
         </motion.section>
@@ -146,7 +151,7 @@ export default function AboutPage() {
           </blockquote>
           <Link
             href="/#contact"
-            className="group inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-all duration-300 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
+            className="pressable group inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
           >
             Start a conversation
           </Link>

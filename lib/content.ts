@@ -213,19 +213,15 @@ export const CAPABILITY_TICKER = [
   "Hardware R&D",
 ] as const;
 
-export const HERO_PROMPTS = [
-  "Build a web platform that scales...",
-  "Develop an offline-first mobile app...",
-  "Engineer a multi-tenant SaaS product...",
-  "Integrate AI document processing...",
-  "Design embedded hardware systems...",
-] as const;
-
 /**
- * Founders — names and bios pending from the client.
- * Fill `name` / `title` / `bio` and the section picks them up automatically.
+ * Founders.
+ * `title` and `bio` are optional and currently unset — the sections render the
+ * names alone until real roles and bios are supplied, rather than inventing them.
  */
-export const FOUNDERS: { name: string; title: string; bio: string }[] = [];
+export const FOUNDERS: { name: string; title?: string; bio?: string }[] = [
+  { name: "Kevin Mathew" },
+  { name: "Akshay K A" },
+];
 
 export const CONTACT = {
   email: "hello@t-0.dev",

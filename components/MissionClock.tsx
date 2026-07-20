@@ -20,13 +20,12 @@ function format(totalSeconds: number) {
  */
 export function useMissionClock() {
   const shouldReduceMotion = useReducedMotion();
-  const [label, setLabel] = useState("T−00:00:03");
+  // `null` until the interval produces a value, so the reduced-motion branch is
+  // derived at render time rather than written from inside the effect.
+  const [label, setLabel] = useState<string | null>(null);
 
   useEffect(() => {
-    if (shouldReduceMotion) {
-      setLabel("T+00:00:00");
-      return;
-    }
+    if (shouldReduceMotion) return;
 
     let remaining = 3;
     let elapsed = 0;
@@ -50,7 +49,8 @@ export function useMissionClock() {
     return () => clearInterval(id);
   }, [shouldReduceMotion]);
 
-  return label;
+  if (label !== null) return label;
+  return shouldReduceMotion ? "T+00:00:00" : "T−00:00:03";
 }
 
 export default function MissionClock({ className = "" }: { className?: string }) {

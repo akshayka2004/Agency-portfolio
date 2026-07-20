@@ -30,9 +30,19 @@
   --border-strong: #CDD4DC;
   --success: #16A34A;
 
-  /* ── Motion ── */
+  /* ── Motion ──
+     Built-in CSS easings are too weak to read as intentional.
+     These are the stronger custom variants used across the site. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.22, 0.8, 0.28, 1);
+
+  /* ── Terminal ── */
+  --term-bg: #0E1520;
+  --term-bg-bar: #161F2D;
+  --term-text: #D7DEE8;
+  --term-muted: #78849A;
 }
 
 @theme {
@@ -185,22 +195,62 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.sheen:hover::after {
-  transform: translateX(110%);
+@media (hover: hover) and (pointer: fine) {
+  .sheen:hover::after {
+    transform: translateX(110%);
+  }
 }
 
-/* Lift-on-hover for cards */
+/* ── Terminal ── */
+.terminal {
+  background: var(--term-bg);
+  color: var(--term-text);
+  font-family: var(--font-mono);
+}
+
+/* Faint scanline wash — reads as a screen, not a black box */
+.terminal-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    rgba(255, 255, 255, 0.018) 2px 3px
+  );
+}
+
+/* Logo-styled chrome: wide tracking + uppercase, matching the wordmark lockup */
+.term-chrome {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* Lift-on-hover for cards. Gated so touch taps don't trigger a stuck hover. */
 .lift {
   transition:
-    transform 0.35s var(--ease-spring),
-    box-shadow 0.35s var(--ease-spring),
-    border-color 0.25s ease;
+    transform 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out),
+    border-color 200ms ease;
 }
 
-.lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px -12px rgba(16, 22, 31, 0.16);
-  border-color: var(--accent-line);
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -12px rgba(16, 22, 31, 0.16);
+    border-color: var(--accent-line);
+  }
+}
+
+/* Press feedback — every pressable surface must answer the finger */
+.pressable {
+  transition: transform 140ms var(--ease-out);
+}
+
+.pressable:active {
+  transform: scale(0.97);
 }
 
 /* Underline that draws in from the left */
@@ -218,11 +268,13 @@ button:focus-visible {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s var(--ease-out-expo);
+  transition: transform 260ms var(--ease-out);
 }
 
-.link-draw:hover::after {
-  transform: scaleX(1);
+@media (hover: hover) and (pointer: fine) {
+  .link-draw:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* Brand rule — blue bleeding into lime, mirrors the logo slash */
