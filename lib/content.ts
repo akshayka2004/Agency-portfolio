@@ -224,7 +224,7 @@ export const FOUNDERS: { name: string; title?: string; bio?: string }[] = [
 ];
 
 export const CONTACT = {
-  email: "hello@t-0.dev",
+  email: "hello@t-0.tech",
   location: "Kerala, India — working worldwide",
   /** Populated once the real handles are supplied. */
   whatsapp: null as string | null,
