@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${museoModerno.variable} scroll-smooth`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${museoModerno.variable}`}>
       <body className="antialiased bg-bg text-text-primary" suppressHydrationWarning>
         <ScrollProgressBar />
         <Navbar />

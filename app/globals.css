@@ -107,11 +107,13 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  /* Deliberately NOT scroll-behavior: smooth. Smooth scrolling animates
+     through every section between here and the target, so the nav's active
+     indicator hops through each one on the way past. In-page links jump. */
 }
 
 section {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 96px;
 }
 
 /* ────────────────────────────────────────────
@@ -375,7 +377,6 @@ button:focus-visible {
    Reduced motion — honour it everywhere
    ──────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
 
   .marquee-track,
   .pulse-dot,

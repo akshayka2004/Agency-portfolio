@@ -77,6 +77,26 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [isMobileMenuOpen]);
 
+  /**
+   * Jump straight to a section instead of letting the browser walk there.
+   * Also claims the indicator immediately, so the pill lands on the clicked
+   * link rather than waiting a frame for the observer to catch up.
+   */
+  const jumpToSection = (event: React.MouseEvent, section: string) => {
+    if (pathname !== "/") return; // let Next handle the cross-route navigation
+    const target = document.getElementById(section);
+    if (!target) return;
+
+    event.preventDefault();
+    setIsMobileMenuOpen(false);
+    setObservedSection(section);
+
+    const NAV_OFFSET = 96; // clears the floating pill
+    const top = target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+    window.scrollTo({ top, behavior: "instant" });
+    window.history.replaceState(null, "", `/#${section}`);
+  };
+
   const isLinkActive = (link: (typeof NAV_LINKS)[number]) =>
     "section" in link && link.section
       ? pathname === "/" && activeSection === link.section
@@ -113,6 +133,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
+                    onClick={(e) => "section" in link && link.section && jumpToSection(e, link.section)}
                     className={`relative px-3.5 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
                       active ? "text-accent" : "text-text-secondary hover:text-text-primary"
                     }`}
@@ -184,7 +205,10 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      if ("section" in link && link.section) jumpToSection(e, link.section);
+                      else setIsMobileMenuOpen(false);
+                    }}
                     className="block py-3 text-3xl font-bold tracking-tight text-text-primary hover:text-accent transition-colors"
                   >
                     {link.name}
