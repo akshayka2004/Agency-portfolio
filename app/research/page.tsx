@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { CONTACT } from "@/lib/content";
 
 const researchCapabilities = [
   {
@@ -13,9 +14,9 @@ const researchCapabilities = [
   },
   {
     title: "Embedded Systems & IoT",
-    category: "Hardware",
-    desc: "Prototyping edge devices and sensor networks. We research the feasibility of integrating microcontrollers with high-throughput cloud pipelines for industrial automation.",
-    tags: ["PCB Prototyping", "Microcontrollers", "Edge Computing", "C++"]
+    category: "Firmware",
+    desc: "Firmware for edge devices and sensor networks. We research the feasibility of integrating microcontrollers with high-throughput cloud pipelines for industrial automation.",
+    tags: ["Embedded Firmware", "Microcontrollers", "Edge Computing", "C++"]
   },
   {
     title: "Resilient Cloud Architectures",
@@ -74,7 +75,7 @@ export default function ResearchPage() {
                 <h3 className="text-2xl font-bold text-text-primary">Require a custom technical feasibility study?</h3>
                 <p className="text-lg text-text-secondary leading-relaxed">We partner with organizations to research and validate complex engineering ideas before production.</p>
             </div>
-            <Link href="mailto:contact@t-0.engineering" className="shrink-0 bg-accent text-white px-8 py-4 rounded-xl font-semibold hover:bg-accent-hover transition-colors shadow-sm">
+            <Link href={`mailto:${CONTACT.email}`} className="pressable shrink-0 bg-accent text-white px-8 py-4 rounded-xl font-semibold hover:bg-accent-dark transition-colors shadow-sm">
               Request Consultation
             </Link>
         </div>

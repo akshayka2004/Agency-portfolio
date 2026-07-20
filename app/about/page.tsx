@@ -30,8 +30,8 @@ const PRINCIPLES = [
   },
   {
     kicker: "04",
-    title: "Pixels to PCBs",
-    desc: "Interface design and board-level firmware under one roof — which means the seams between them are ours to solve, not yours.",
+    title: "Interface to firmware",
+    desc: "Product design and low-level firmware under one roof — which means the seams between them are ours to solve, not yours.",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function AboutPage() {
               </div>
 
               <p className="text-text-secondary leading-relaxed">
-                One came at problems from the browser down, the other from the circuit board up.{" "}
+                One came at problems from the browser down, the other from the firmware up.{" "}
                 <Brand /> is what that overlap became — a studio that can design an interface in the
                 morning
                 and read a firmware dump in the afternoon, without outsourcing either.

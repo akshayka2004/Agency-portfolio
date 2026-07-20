@@ -59,12 +59,12 @@ export const SERVICES = [
   {
     id: "05",
     category: "R&D",
-    title: "Hardware R&D & embedded systems",
-    desc: "The discipline most software agencies can't offer. We work at the board level — firmware analysis, protocol reverse engineering, embedded IoT — and connect it all the way up to cloud dashboards. If your product has a circuit board in it, we speak its language.",
-    tags: ["JTAG", "CAN bus", "DSP firmware", "PCB prototyping"],
+    title: "Firmware & embedded systems",
+    desc: "The discipline most software agencies can't offer. We work close to the metal — firmware analysis, protocol reverse engineering, embedded IoT — and connect it all the way up to cloud dashboards. If your product runs code on a device, we speak its language.",
+    tags: ["JTAG", "CAN bus", "DSP firmware", "Embedded C"],
     bullets: [
       "Firmware extraction & analysis",
-      "Protocol & PCB reverse engineering",
+      "Protocol reverse engineering",
       "Sensor networks & edge devices",
       "Technical feasibility studies",
     ],
@@ -97,7 +97,7 @@ export const AUDIENCES = [
     role: "Enterprise & industrial",
     quote: "We need proof before we commit to production.",
     desc: "Feasibility studies and working prototypes for hard problems — firmware, protocols, IoT pilots, private AI deployments. We turn uncertainty into an engineering decision you can defend.",
-    linkLabel: "Hardware R&D & research",
+    linkLabel: "Firmware & embedded research",
     href: "/research",
   },
 ] as const;
@@ -137,15 +137,15 @@ export const CASE_STUDIES = [
     tags: ["React", "REST APIs", "Data visualization"],
   },
   {
-    title: "Inverter firmware & hardware analysis",
+    title: "Inverter firmware analysis",
     subtitle: "Power electronics · R&D",
     problem:
       "A deployed inverter platform needed to be understood from the inside — no source code, no schematics, no vendor documentation.",
     built:
-      "A full teardown programme: firmware extraction over JTAG, CAN bus traffic analysis, and PCB-level reverse engineering — producing a complete technical dossier of the platform.",
+      "A full firmware programme: image extraction over JTAG, disassembly of the control logic, and CAN bus traffic analysis — producing a complete technical dossier of how the platform actually behaves.",
     result:
-      "Findings that now inform a made-in-India power electronics roadmap. The kind of work that requires a team fluent in both silicon and software.",
-    tags: ["JTAG", "CAN bus", "DSP firmware", "PCB reverse engineering"],
+      "Findings that now inform a made-in-India power electronics roadmap. The kind of work that requires a team fluent in embedded code, not just applications.",
+    tags: ["JTAG", "CAN bus", "DSP firmware", "Protocol analysis"],
   },
 ] as const;
 
@@ -191,9 +191,9 @@ export const RESEARCH_TRACKS = [
     tags: ["Local LLMs", "RAG", "OpenCV"],
   },
   {
-    kicker: "Hardware",
+    kicker: "Firmware",
     title: "Embedded systems & IoT",
-    desc: "Edge devices, sensor networks and microcontroller platforms — prototyped in our own lab and connected to high-throughput cloud pipelines for industrial use.",
+    desc: "Firmware for edge devices, sensor networks and microcontroller platforms — written and proven in our own lab, then connected to high-throughput cloud pipelines for industrial use.",
     tags: ["Microcontrollers", "Edge computing", "C / C++"],
   },
   {
@@ -210,7 +210,7 @@ export const CAPABILITY_TICKER = [
   "SaaS products",
   "AI & automation",
   "Embedded & IoT",
-  "Hardware R&D",
+  "Firmware & R&D",
 ] as const;
 
 /**

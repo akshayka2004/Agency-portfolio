@@ -138,7 +138,7 @@ export default function Home() {
           <SectionHead
             seq="SEQ 01 — What we build"
             title="Five disciplines. One team. Zero hand-offs."
-            lead="Most agencies stop at the browser. We go from pixels to PCBs — which means your web app, your automation, and your hardware can be designed by people who actually talk to each other."
+            lead="Most agencies stop at the browser. We go from the interface all the way down to the firmware — which means your web app, your automation, and the code running on your devices are built by people who actually talk to each other."
           />
 
           <div className="border-t border-border">
@@ -473,7 +473,7 @@ export default function Home() {
             >
               <p className="text-text-secondary leading-relaxed">
                 Founded in Kerala by two engineers who kept ending up on the same problem from
-                opposite directions — one from the browser down, one from the circuit board up.{" "}
+                opposite directions — one from the browser down, one from the firmware up.{" "}
                 <Brand /> is what that overlap turned into: a studio that can design an interface in
                 the
                 morning and read a firmware dump in the afternoon.

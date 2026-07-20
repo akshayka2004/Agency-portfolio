@@ -10,7 +10,7 @@ const COLUMNS = [
       { label: "Web & mobile", href: "/#services" },
       { label: "SaaS engineering", href: "/#services" },
       { label: "AI & automation", href: "/#services" },
-      { label: "Hardware R&D", href: "/#rd" },
+      { label: "Firmware & R&D", href: "/#rd" },
     ],
   },
   {
