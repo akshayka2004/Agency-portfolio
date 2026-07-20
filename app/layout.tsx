@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { SITE_URL } from "@/lib/site";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -31,11 +32,11 @@ export const metadata: Metadata = {
     template: "%s — T−0",
   },
   description: DESCRIPTION,
-  metadataBase: new URL("https://t-0.dev"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "T−0 — You Think. We Build.",
     description: DESCRIPTION,
-    url: "https://t-0.dev",
+    url: SITE_URL,
     siteName: "T−0",
     locale: "en_US",
     type: "website",
