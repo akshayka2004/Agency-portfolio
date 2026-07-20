@@ -127,7 +127,7 @@ export default function AboutPage() {
                 key={principle.kicker}
                 {...reveal}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.08, 0.24) }}
-                className="lift sheen border border-border rounded-xl bg-surface p-7 flex flex-col gap-3"
+                className="lift sheen edge-beam border border-border rounded-xl bg-surface p-7 flex flex-col gap-3"
               >
                 <span className="font-mono text-sm tracking-[0.14em] text-accent">
                   {principle.kicker}

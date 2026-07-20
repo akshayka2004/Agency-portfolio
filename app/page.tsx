@@ -198,7 +198,7 @@ export default function Home() {
                 key={aud.role}
                 {...reveal}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.08, 0.24) }}
-                className="lift sheen border border-border rounded-xl bg-surface p-8 flex flex-col gap-4"
+                className="lift sheen edge-beam border border-border rounded-xl bg-surface p-8 flex flex-col gap-4"
               >
                 <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
                   {aud.role}
@@ -234,7 +234,7 @@ export default function Home() {
                 key={work.title}
                 {...reveal}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.2) }}
-                className="lift border border-border rounded-xl bg-surface overflow-hidden"
+                className="lift edge-beam border border-border rounded-xl bg-surface overflow-hidden"
               >
                 <div className="flex justify-between items-baseline flex-wrap gap-4 p-8 pb-0">
                   <h3 className="text-2xl font-bold tracking-tight">{work.title}</h3>
@@ -368,7 +368,7 @@ export default function Home() {
                 key={track.title}
                 {...reveal}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.08, 0.24) }}
-                className="lift sheen border border-border rounded-xl bg-surface p-8 flex flex-col gap-3"
+                className="lift sheen edge-beam border border-border rounded-xl bg-surface p-8 flex flex-col gap-3"
               >
                 <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent-lime-dark">
                   {track.kicker}
@@ -535,7 +535,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="flex flex-col justify-center"
           >
-            <div className="rounded-xl border border-border bg-surface p-8 flex flex-col gap-6">
+            <div className="edge-beam rounded-xl border border-border bg-surface p-8 flex flex-col gap-6">
               <div className="flex items-center justify-between pb-4 border-b border-border">
                 <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
                   Mission clock

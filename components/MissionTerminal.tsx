@@ -111,7 +111,7 @@ export default function MissionTerminal() {
 
   return (
     <div
-      className="terminal relative rounded-xl border border-border overflow-hidden shadow-[0_24px_60px_-28px_rgba(16,22,31,0.45)]"
+      className="terminal beam-ring relative rounded-xl border border-border overflow-hidden shadow-[0_24px_60px_-28px_rgba(16,22,31,0.45)]"
       aria-hidden="true"
     >
       {/* Title bar */}

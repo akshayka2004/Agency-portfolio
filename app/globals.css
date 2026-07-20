@@ -26,8 +26,9 @@
   --lime-dim: rgba(151, 204, 62, 0.14);
   --lime-line: rgba(151, 204, 62, 0.38);
 
-  --border: #E4E8ED;
-  --border-strong: #CDD4DC;
+  /* Borders carry a faint brand hue so edges read as intentional, not grey haze */
+  --border: #D2DBE4;
+  --border-strong: #B8C2CF;
   --success: #16A34A;
 
   /* ── Motion ──
@@ -277,6 +278,91 @@ button:focus-visible {
   }
 }
 
+/* ────────────────────────────────────────────
+   Beams — brand-coloured light travelling along edges
+   ──────────────────────────────────────────── */
+
+/* Registering the angle as a typed custom property is what makes the conic
+   gradient interpolate; a plain --var would jump instead of sweep. */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes beam-revolve {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+/* Revolving ring: a light source orbiting the element's border.
+   The mask punches out the middle so only the 1px edge is painted. */
+.beam-ring {
+  position: relative;
+  isolation: isolate;
+}
+
+.beam-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    rgba(0, 147, 214, 0.05) 24deg,
+    var(--accent) 52deg,
+    var(--accent-light) 66deg,
+    var(--accent-lime) 82deg,
+    rgba(151, 204, 62, 0.05) 104deg,
+    transparent 132deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: beam-revolve 7s linear infinite;
+  /* drop-shadow follows the masked ring's alpha shape, so the glow hugs the
+     1px edge. A blurred pseudo-element instead floods the element's interior
+     whenever the background is translucent or clipped by overflow-hidden. */
+  filter:
+    drop-shadow(0 0 3px rgba(0, 147, 214, 0.55))
+    drop-shadow(0 0 7px rgba(151, 204, 62, 0.3));
+}
+
+/* Static edge beam: a hairline of brand light across the top of a card,
+   fading out at both ends so the border stops reading as flat grey. */
+.edge-beam {
+  position: relative;
+}
+
+.edge-beam::before {
+  content: "";
+  position: absolute;
+  /* Sits at 0 rather than -1px so it survives `overflow-hidden` parents */
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1.5px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 147, 214, 0.9) 35%,
+    rgba(151, 204, 62, 0.9) 65%,
+    transparent
+  );
+}
+
 /* Brand rule — blue bleeding into lime, mirrors the logo slash */
 .brand-rule {
   height: 2px;
@@ -292,6 +378,11 @@ button:focus-visible {
   .marquee-track,
   .pulse-dot,
   .caret {
+    animation: none;
+  }
+
+  /* Beam stops revolving but keeps a static brand-lit edge */
+  .beam-ring::before {
     animation: none;
   }
 

@@ -90,10 +90,10 @@ export default function Navbar() {
           aria-label="Main navigation"
         >
           <div
-            className={`flex h-14 items-center justify-between rounded-full border px-3 sm:px-5 transition-[background-color,border-color,box-shadow] duration-300 ${
+            className={`beam-ring flex h-14 items-center justify-between rounded-full border px-3 sm:px-5 transition-[background-color,border-color,box-shadow] duration-300 ${
               isScrolled
-                ? "bg-surface/70 backdrop-blur-xl border-border shadow-[0_8px_32px_-12px_rgba(16,22,31,0.18)]"
-                : "bg-surface/40 backdrop-blur-md border-border/60"
+                ? "bg-surface/80 backdrop-blur-xl border-border shadow-[0_8px_32px_-12px_rgba(16,22,31,0.18)]"
+                : "bg-surface/55 backdrop-blur-md border-border/70"
             }`}
           >
             <Link
