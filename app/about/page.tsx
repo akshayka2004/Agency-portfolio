@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import Brand from "@/components/Brand";
+import CtaButton from "@/components/CtaButton";
 import { FOUNDERS } from "@/lib/content";
 
 const reveal = {
@@ -46,14 +46,14 @@ export default function AboutPage() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-[760px] mb-16"
         >
-          <div className="font-mono text-xs tracking-[0.16em] uppercase text-accent">
+          <div className="text-caption text-accent">
             About the studio
           </div>
           <div className="brand-rule w-14 mt-4 mb-6" />
-          <h1 className="text-[clamp(2.4rem,5vw,4rem)] font-bold tracking-[-0.02em] leading-[1.06] mb-6">
+          <h1 className="text-display font-bold mb-6">
             A studio built around the gap between an idea and a running system.
           </h1>
-          <p className="text-lg sm:text-xl text-text-secondary leading-relaxed">
+          <p className="text-subtitle text-text-secondary">
             <Brand />{" "}
             is an engineering and design studio in Kerala, India. We work across web, mobile,
             SaaS, applied AI and hardware R&amp;D — the whole span, because the interesting problems
@@ -77,11 +77,11 @@ export default function AboutPage() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent-lime-dark">
+              <span className="text-caption text-accent-lime-dark">
                 The founders
               </span>
 
-              <h2 className="text-2xl font-bold tracking-tight">
+              <h2 className="text-h3 font-bold tracking-tight">
                 Two engineers who kept meeting in the middle.
               </h2>
 
@@ -90,12 +90,12 @@ export default function AboutPage() {
                   <div key={founder.name} className="flex flex-col gap-0.5">
                     <span className="text-lg font-bold tracking-tight">{founder.name}</span>
                     {founder.title && (
-                      <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                      <span className="text-caption text-accent">
                         {founder.title}
                       </span>
                     )}
                     {founder.bio && (
-                      <p className="text-sm text-text-secondary leading-relaxed mt-1">
+                      <p className="text-text-secondary leading-relaxed mt-1">
                         {founder.bio}
                       </p>
                     )}
@@ -120,7 +120,7 @@ export default function AboutPage() {
 
         {/* Principles */}
         <motion.section {...reveal} transition={{ duration: 0.6 }} className="mb-24">
-          <h2 className="text-[clamp(1.8rem,3.4vw,2.6rem)] font-bold tracking-tight leading-[1.12] mb-10 max-w-[24ch]">
+          <h2 className="text-h2 font-bold mb-10 max-w-[24ch]">
             How we work, in four lines.
           </h2>
 
@@ -135,8 +135,8 @@ export default function AboutPage() {
                 <span className="font-mono text-sm tracking-[0.14em] text-accent">
                   {principle.kicker}
                 </span>
-                <h3 className="text-lg font-bold tracking-tight">{principle.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{principle.desc}</p>
+                <h3 className="text-h3 font-bold tracking-tight">{principle.title}</h3>
+                <p className="text-text-secondary leading-relaxed">{principle.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -148,16 +148,13 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="border-t border-border pt-14 flex flex-col items-start gap-6"
         >
-          <blockquote className="text-[clamp(1.5rem,3vw,2.2rem)] font-bold tracking-tight leading-[1.22] max-w-[22ch]">
+          <blockquote className="text-h2 font-bold max-w-[22ch]">
             Technology changes every year.{" "}
             <span className="text-accent">Strong engineering doesn&apos;t.</span>
           </blockquote>
-          <Link
-            href="/#contact"
-            className="pressable group inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
-          >
+          <CtaButton href="/#contact" icon>
             Start a conversation
-          </Link>
+          </CtaButton>
         </motion.section>
       </main>
     </div>

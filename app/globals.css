@@ -10,7 +10,10 @@
   /* ── Type ── */
   --text-primary: #10161F;
   --text-secondary: #566072;
-  --text-tertiary: #8A94A6;
+  /* #8A94A6 measured ~2.9:1 on --bg — below WCAG AA's 4.5:1 floor for text this
+     small, and this color is used for real captions/labels, not decoration.
+     #66707F measures ~4.8:1 on --bg / --surface. */
+  --text-tertiary: #66707F;
 
   /* ── Brand: taken from the T−0 mark ── */
   --accent: #0093D6;        /* logo blue — primary */
@@ -67,6 +70,25 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   /* Reserved for the T−0 wordmark wherever it appears as the company name */
   --font-brand: var(--font-museo-moderno), var(--font-space-grotesk), sans-serif;
+
+  /* ── Typography scale ──
+     Every heading and lead paragraph on the site used its own hand-tuned
+     clamp(), so no two pages agreed on how big an H1 or a lead was. These are
+     the six sizes; --text-* keys are real Tailwind utilities (text-display,
+     text-h2, ...) per Tailwind v4's theme convention, same as --color-*. */
+  --text-display: clamp(2.75rem, 6vw, 4.75rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-h2: clamp(1.9rem, 3.6vw, 3rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.25;
+
+  --text-subtitle: clamp(1.0625rem, 1.4vw, 1.25rem);
+  --text-subtitle--line-height: 1.65;
 }
 
 body {
@@ -231,6 +253,19 @@ button:focus-visible {
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.18em;
+}
+
+/* Caption/label text — kickers, meta labels, tag chips. Was copy-pasted as
+   `font-mono text-[11px] uppercase tracking-[0.14em]` (sometimes [10px]) at
+   ~15 call sites with no shared definition, so sizes drifted. One definition;
+   color is left to the call site since kickers, tags and meta-labels each use
+   a different one on purpose. */
+.text-caption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 /* Lift-on-hover for cards. Gated so touch taps don't trigger a stuck hover. */

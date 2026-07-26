@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import BrandMark from "@/components/BrandMark";
 import MissionClock from "@/components/MissionClock";
+import CtaButton from "@/components/CtaButton";
 
 /** `section` ids are tracked for the sliding active indicator; route links are not. */
 const NAV_LINKS = [
@@ -157,14 +158,10 @@ export default function Navbar() {
             </div>
 
             <div className="hidden lg:flex items-center gap-2.5">
-              <MissionClock className="text-[11px] text-accent border border-accent-line bg-[var(--accent-dim)] rounded-full px-3 py-1.5" />
-              <Link
-                href="/#contact"
-                className="pressable group inline-flex items-center gap-1.5 h-9 px-4 rounded-full bg-accent text-white text-xs font-semibold tracking-wide transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_8px_20px_-8px_rgba(0,147,214,0.65)]"
-              >
+              <MissionClock className="text-xs text-accent border border-accent-line bg-[var(--accent-dim)] rounded-full px-3 py-1.5" />
+              <CtaButton href="/#contact" size="sm" icon>
                 Start a conversation
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </Link>
+              </CtaButton>
             </div>
 
             <button
@@ -218,14 +215,9 @@ export default function Navbar() {
 
               <div className="h-px bg-border my-5" />
 
-              <Link
-                href="/#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="pressable inline-flex items-center justify-center gap-2 bg-accent text-white py-4 rounded-full text-base font-semibold hover:bg-accent-dark transition-colors"
-              >
+              <CtaButton href="/#contact" size="mobile" icon onClick={() => setIsMobileMenuOpen(false)}>
                 Start a conversation
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              </CtaButton>
 
               <MissionClock className="text-xs text-text-tertiary mt-6 text-center" />
             </nav>

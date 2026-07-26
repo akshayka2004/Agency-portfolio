@@ -1,12 +1,14 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Brand from "@/components/Brand";
 import MissionClock from "@/components/MissionClock";
 import MissionTerminal from "@/components/MissionTerminal";
+import CtaButton from "@/components/CtaButton";
 import {
   SERVICES,
   AUDIENCES,
@@ -36,12 +38,12 @@ function SectionHead({
 }) {
   return (
     <motion.div {...reveal} transition={{ duration: 0.6 }} className="mb-14 max-w-[760px]">
-      <div className="font-mono text-xs tracking-[0.16em] uppercase text-accent">{seq}</div>
+      <div className="text-caption text-accent">{seq}</div>
       <div className="brand-rule w-14 mt-4 mb-6" />
-      <h2 className="text-[clamp(1.9rem,3.8vw,3rem)] font-bold leading-[1.1] tracking-tight mb-4 text-text-primary">
+      <h2 className="text-h2 font-bold mb-4 text-text-primary">
         {title}
       </h2>
-      <p className="text-lg text-text-secondary leading-relaxed">{lead}</p>
+      <p className="text-subtitle text-text-secondary">{lead}</p>
     </motion.div>
   );
 }
@@ -49,13 +51,26 @@ function SectionHead({
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
 
+  // Drives the process timeline: the spine fills as the steps scroll through
+  // view, and whichever step the fill has reached lights up to match.
+  const processStepsRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: processProgress } = useScroll({
+    target: processStepsRef,
+    offset: ["start 0.8", "end 0.35"],
+  });
+  const spineScale = useTransform(processProgress, [0, 1], [0, 1]);
+  const [activeStep, setActiveStep] = useState(0);
+  useMotionValueEvent(processProgress, "change", (v) => {
+    setActiveStep(Math.min(PROCESS_STEPS.length - 1, Math.floor(v * PROCESS_STEPS.length)));
+  });
+
   return (
     <div className="min-h-screen bg-bg text-text-primary overflow-x-hidden">
       {/* ─────────── 1. HERO ─────────── */}
       <section className="relative min-h-[88vh] flex items-center border-b border-border pt-28 pb-20 overflow-hidden">
         <div className="hero-glow" aria-hidden="true" />
 
-        <div className="relative w-full max-w-[1200px] mx-auto px-6 grid lg:grid-cols-[1.25fr_0.75fr] gap-14 items-center">
+        <div className="relative w-full max-w-[1200px] mx-auto px-6 grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +81,7 @@ export default function Home() {
               Software · AI · Automation · Hardware — Kerala, India
             </div>
 
-            <h1 className="text-[clamp(2.6rem,6.2vw,4.8rem)] font-bold tracking-[-0.02em] leading-[1.04] text-text-primary">
+            <h1 className="text-display font-bold text-text-primary">
               You think.
               <br />
               We build.
@@ -78,27 +93,24 @@ export default function Home() {
               .
             </h1>
 
-            <p className="text-lg sm:text-xl text-text-secondary leading-relaxed max-w-xl">
+            {/* Scannable value prop — what/who/why, in one sentence, before the metaphor */}
+            <p className="text-lg sm:text-xl font-semibold text-text-primary leading-snug max-w-xl">
+              Software &amp; AI engineering for founders, growing businesses and industrial teams —
+              web platforms, mobile apps, SaaS products, AI automation and firmware.
+            </p>
+
+            <p className="text-base text-text-secondary leading-relaxed max-w-xl">
               In a launch countdown, <Brand />{" "}
-              is the instant preparation becomes liftoff. That&apos;s
-              where we work — turning your ideas into web platforms, mobile apps, SaaS products, AI
-              automation and hardware that ships.
+              is the instant preparation becomes liftoff. That&apos;s where we work.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
-              <Link
-                href="#contact"
-                className="pressable group inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
-              >
+              <CtaButton href="#contact" icon>
                 Start a conversation
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="#work"
-                className="pressable inline-flex items-center justify-center border border-border-strong text-text-primary px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-colors duration-200 hover:border-accent hover:text-accent"
-              >
+              </CtaButton>
+              <CtaButton href="#work" variant="secondary">
                 See our work
-              </Link>
+              </CtaButton>
             </div>
           </motion.div>
 
@@ -107,9 +119,28 @@ export default function Home() {
             initial={shouldReduceMotion ? false : { opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:block"
+            className="hidden lg:flex flex-col gap-4"
           >
             <MissionTerminal />
+
+            {/* Balances the terminal's weight against the denser left column with
+                facts already established elsewhere on the page — no invented stats. */}
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface px-5 py-4">
+              <span className="flex flex-col">
+                <span className="text-h3 font-bold leading-none text-text-primary">5</span>
+                <span className="text-caption text-text-tertiary mt-1">Disciplines</span>
+              </span>
+              <span className="h-8 w-px bg-border" />
+              <span className="flex flex-col">
+                <span className="text-h3 font-bold leading-none text-text-primary">1</span>
+                <span className="text-caption text-text-tertiary mt-1">No hand-offs</span>
+              </span>
+              <span className="h-8 w-px bg-border" />
+              <span className="flex flex-col">
+                <span className="text-h3 font-bold leading-none text-accent-lime-dark">T+</span>
+                <span className="text-caption text-text-tertiary mt-1">Support after launch</span>
+              </span>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -147,23 +178,31 @@ export default function Home() {
                 key={svc.id}
                 {...reveal}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.06, 0.24) }}
-                className="group grid md:grid-cols-[140px_1fr_1fr] lg:grid-cols-[200px_1.1fr_1fr] gap-6 md:gap-10 py-10 border-b border-border transition-colors duration-300 hover:bg-[linear-gradient(90deg,var(--accent-dim),transparent_45%)]"
+                className="group relative grid md:grid-cols-[140px_1fr_1fr] lg:grid-cols-[200px_1.1fr_1fr] gap-6 md:gap-10 py-10 pr-10 border-b border-l-2 border-l-transparent border-border transition-[background-color,border-color] duration-300 hover:bg-[linear-gradient(90deg,var(--accent-dim),transparent_45%)] hover:border-l-accent"
               >
+                {/* Stretched click target — the whole row leads to the same
+                    conversation-starter as the CTAs, just scoped by context. */}
+                <Link
+                  href="/#contact"
+                  aria-label={`Start a conversation about ${svc.title}`}
+                  className="absolute inset-0"
+                />
+
                 <div className="font-mono text-sm tracking-[0.14em] text-accent">
                   {svc.id}
-                  <small className="block text-text-tertiary mt-1.5 text-[11px] tracking-[0.14em]">
+                  <small className="block text-text-tertiary mt-1.5 text-caption">
                     {svc.category}
                   </small>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold mb-3 tracking-tight">{svc.title}</h3>
+                  <h3 className="text-h3 font-bold mb-3 tracking-tight">{svc.title}</h3>
                   <p className="text-text-secondary leading-relaxed mb-4">{svc.desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {svc.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-[11px] tracking-wider text-text-secondary border border-border rounded px-2 py-1 bg-surface transition-colors duration-300 group-hover:border-accent-line"
+                        className="font-mono text-xs tracking-wider text-text-secondary border border-border rounded px-2 py-1 bg-surface transition-colors duration-300 group-hover:border-accent-line"
                       >
                         {tag}
                       </span>
@@ -179,6 +218,13 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+
+                {/* pointer-events-none so clicks always land on the stretched Link above,
+                    even when the cursor is exactly over this icon. */}
+                <ArrowUpRight
+                  className="pointer-events-none absolute top-10 right-0 w-5 h-5 text-accent opacity-0 -translate-x-1 transition-[opacity,transform] duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                  aria-hidden="true"
+                />
               </motion.div>
             ))}
           </div>
@@ -202,7 +248,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: Math.min(i * 0.08, 0.24) }}
                 className="lift sheen edge-beam border border-border rounded-xl bg-surface p-8 flex flex-col gap-4"
               >
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
+                <span className="text-caption text-text-tertiary">
                   {aud.role}
                 </span>
                 <q className="text-[1.35rem] font-bold leading-snug tracking-tight text-text-primary">
@@ -211,9 +257,10 @@ export default function Home() {
                 <p className="text-text-secondary flex-1 leading-relaxed">{aud.desc}</p>
                 <Link
                   href={aud.href}
-                  className="link-draw self-start font-mono text-xs tracking-[0.12em] uppercase text-accent mt-2"
+                  className="link-draw group/link self-start inline-flex items-center gap-1.5 font-mono text-sm font-bold tracking-[0.08em] uppercase text-accent mt-2"
                 >
-                  → {aud.linkLabel}
+                  {aud.linkLabel}
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                 </Link>
               </motion.div>
             ))}
@@ -259,7 +306,7 @@ export default function Home() {
                         idx < 2 ? "md:border-r" : ""
                       } ${isResult ? "bg-[linear-gradient(180deg,var(--lime-dim),transparent_70%)]" : ""}`}
                     >
-                      <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary block mb-3">
+                      <span className="text-caption text-text-tertiary block mb-3">
                         {label}
                       </span>
                       <p
@@ -277,7 +324,7 @@ export default function Home() {
                   {work.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[11px] tracking-wider text-text-secondary border border-border bg-surface rounded px-2 py-1"
+                      className="font-mono text-xs tracking-wider text-text-secondary border border-border bg-surface rounded px-2 py-1"
                     >
                       {tag}
                     </span>
@@ -309,12 +356,24 @@ export default function Home() {
           />
 
           <div className="relative mt-12 md:mt-20">
-            {/* Spine: vertical on mobile, horizontal on desktop */}
+            {/* Spine track: vertical on mobile, horizontal on desktop */}
             <div className="absolute left-[5px] top-0 bottom-0 w-px bg-border-strong md:left-0 md:right-0 md:top-[30px] md:bottom-auto md:w-auto md:h-px" />
 
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-9 md:gap-5 pl-9 md:pl-0">
+            {/* Accent fill over the track, tied to how far these steps have
+                scrolled through view. scaleX drives the desktop (horizontal)
+                fill, scaleY the mobile (vertical) one — the same motion value
+                works for both since the track is 1px on whichever axis it
+                isn't filling, so the "wrong" scale is imperceptible. */}
+            <motion.div
+              className="absolute left-[5px] top-0 bottom-0 w-px bg-accent md:left-0 md:right-0 md:top-[30px] md:bottom-auto md:w-auto md:h-px origin-top md:origin-left"
+              style={shouldReduceMotion ? undefined : { scaleX: spineScale, scaleY: spineScale }}
+              aria-hidden="true"
+            />
+
+            <div ref={processStepsRef} className="grid grid-cols-1 md:grid-cols-6 gap-9 md:gap-5 pl-9 md:pl-0">
               {PROCESS_STEPS.map((step, i) => {
-                const isZero = "isZero" in step && step.isZero;
+                const isLaunch = "isZero" in step && step.isZero;
+                const isActive = shouldReduceMotion ? isLaunch : i <= activeStep;
                 return (
                   <motion.div
                     key={step.t}
@@ -323,20 +382,20 @@ export default function Home() {
                     className="relative md:pt-[70px]"
                   >
                     <span
-                      className={`absolute top-1.5 -left-9 md:top-6 md:left-0 w-3.5 h-3.5 rounded-full border-2 ${
-                        isZero
-                          ? "bg-accent border-accent shadow-[0_0_0_4px_var(--accent-dim)]"
+                      className={`absolute top-1.5 -left-9 md:top-6 md:left-0 w-3.5 h-3.5 rounded-full border-2 transition-colors duration-300 ${
+                        isActive
+                          ? "bg-accent border-accent"
                           : "bg-surface border-border-strong"
-                      }`}
+                      } ${isLaunch && isActive ? "shadow-[0_0_0_4px_var(--accent-dim)]" : ""}`}
                     />
                     <span
-                      className={`font-mono text-sm tracking-[0.1em] block mb-2 md:absolute md:top-0 md:left-0 ${
-                        isZero ? "text-accent font-semibold" : "text-text-tertiary"
+                      className={`font-mono text-sm tracking-[0.1em] block mb-2 md:absolute md:top-0 md:left-0 transition-colors duration-300 ${
+                        isActive ? "text-accent font-semibold" : "text-text-tertiary"
                       }`}
                     >
                       {step.t}
                     </span>
-                    <h3 className="text-base font-bold mb-2 tracking-tight">{step.title}</h3>
+                    <h3 className="text-h3 font-bold mb-2 tracking-tight">{step.title}</h3>
                     <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
                   </motion.div>
                 );
@@ -372,16 +431,16 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: Math.min(i * 0.08, 0.24) }}
                 className="lift sheen edge-beam border border-border rounded-xl bg-surface p-8 flex flex-col gap-3"
               >
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent-lime-dark">
+                <span className="text-caption text-accent-lime-dark">
                   {track.kicker}
                 </span>
-                <h3 className="text-lg font-bold tracking-tight">{track.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed flex-1">{track.desc}</p>
+                <h3 className="text-h3 font-bold tracking-tight">{track.title}</h3>
+                <p className="text-text-secondary leading-relaxed flex-1">{track.desc}</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {track.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[11px] tracking-wider text-text-secondary border border-border rounded px-2 py-1"
+                      className="font-mono text-xs tracking-wider text-text-secondary border border-border rounded px-2 py-1"
                     >
                       {tag}
                     </span>
@@ -409,7 +468,7 @@ export default function Home() {
           <motion.blockquote
             {...reveal}
             transition={{ duration: 0.6 }}
-            className="text-[clamp(1.6rem,3.4vw,2.5rem)] font-bold leading-[1.22] tracking-tight max-w-[20ch]"
+            className="text-h2 font-bold max-w-[20ch]"
           >
             Technology changes every year.{" "}
             <span className="text-accent">Strong engineering doesn&apos;t.</span>
@@ -488,7 +547,7 @@ export default function Home() {
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
                     <span className="text-sm font-semibold tracking-tight">{founder.name}</span>
                     {founder.title && (
-                      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-text-tertiary">
+                      <span className="text-caption text-text-tertiary">
                         {founder.title}
                       </span>
                     )}
@@ -519,24 +578,20 @@ export default function Home() {
       <section id="contact" className="py-28">
         <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-2 gap-14">
           <motion.div {...reveal} transition={{ duration: 0.6 }}>
-            <div className="font-mono text-xs tracking-[0.16em] uppercase text-accent">
+            <div className="text-caption text-accent">
               SEQ 07 — Begin countdown
             </div>
             <div className="brand-rule w-14 mt-4 mb-6" />
-            <h2 className="text-[clamp(2.2rem,4vw,3.2rem)] font-bold leading-[1.1] tracking-tight mb-6">
+            <h2 className="text-h2 font-bold mb-6">
               Start a conversation.
             </h2>
             <p className="text-lg text-text-secondary leading-relaxed mb-9 max-w-lg">
               No sales pitch. No pressure. Tell us where you&apos;re trying to go, and we&apos;ll
               tell you honestly whether — and how — we can get you there.
             </p>
-            <Link
-              href={`mailto:${CONTACT.email}`}
-              className="pressable group inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-lg font-mono text-sm tracking-[0.12em] uppercase transition-[background-color,box-shadow] duration-200 hover:bg-accent-dark hover:shadow-[0_10px_28px_-10px_rgba(0,147,214,0.55)]"
-            >
+            <CtaButton href={`mailto:${CONTACT.email}`} icon>
               Email {CONTACT.email}
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
+            </CtaButton>
           </motion.div>
 
           <motion.div
@@ -546,14 +601,14 @@ export default function Home() {
           >
             <div className="edge-beam rounded-xl border border-border bg-surface p-8 flex flex-col gap-6">
               <div className="flex items-center justify-between pb-4 border-b border-border">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
+                <span className="text-caption text-text-tertiary">
                   Mission clock
                 </span>
                 <MissionClock className="text-sm text-accent" />
               </div>
 
               <div className="flex flex-col gap-1 pb-4 border-b border-border">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
+                <span className="text-caption text-text-tertiary">
                   Email
                 </span>
                 <a
@@ -566,7 +621,7 @@ export default function Home() {
 
               {CONTACT.whatsapp && (
                 <div className="flex flex-col gap-1 pb-4 border-b border-border">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
+                  <span className="text-caption text-text-tertiary">
                     WhatsApp
                   </span>
                   <a
@@ -579,7 +634,7 @@ export default function Home() {
               )}
 
               <div className="flex flex-col gap-1">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-text-tertiary">
+                <span className="text-caption text-text-tertiary">
                   Location
                 </span>
                 <span className="text-text-primary font-medium">{CONTACT.location}</span>

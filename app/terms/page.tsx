@@ -54,9 +54,9 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-bg text-text-primary pt-32 pb-24">
       <div className="max-w-[760px] mx-auto px-6">
-        <div className="font-mono text-xs tracking-[0.16em] uppercase text-accent">Legal</div>
+        <div className="text-caption text-accent">Legal</div>
         <div className="brand-rule w-14 mt-4 mb-6" />
-        <h1 className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-bold tracking-tight leading-[1.1] mb-6">
+        <h1 className="text-h2 font-bold mb-6">
           Terms
         </h1>
         <p className="text-lg text-text-secondary leading-relaxed mb-14">
